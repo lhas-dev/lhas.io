@@ -1,30 +1,126 @@
+"use client";
+
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <div className="relative w-full h-screen">
-      <video
+      <motion.video
         className="absolute top-0 left-0 w-full h-full object-cover"
         src="/bg.mp4"
         autoPlay
         loop
         muted
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       />
-      <div className="absolute top-0 left-0 w-full h-full opacity-80" style={{
-          background: 'linear-gradient(0deg, rgba(0, 0, 250, 0.5), rgba(0, 0, 0, 0.9))',
-        }}></div>
-      <div className="relative z-10 flex pt-5 items-center gap-4 justify-center">
+      <motion.div
+        className="absolute top-0 left-0 w-full h-full opacity-80"
+        style={{
+          background:
+            "linear-gradient(0deg, rgba(0, 0, 250, 0.5), rgba(0, 0, 0, 0.9))",
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      ></motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="relative z-10 flex pt-5 items-center gap-4 justify-center"
+      >
         <img src="/logo1.svg" alt="Logo" className="w-32 h-32 mb-4" />
-        <h1 className="text-white text-xl tracking-wide font-black uppercase">Luiz Almeida</h1>
-      </div>
-      <div className="relative z-10 pt-5 flex items-center justify-center gap-8">
-        <img src="/pixel.png" alt="Pixel Art" className="w-24" />
-        <div className="text-white max-w-lg">
-          <h2 className="text-3xl font-bold mb-4">Hello, my name is Luiz Henrique.</h2>
+        
+        <div><h1 className="text-white text-xl tracking-wide font-black uppercase">
+          Luiz Almeida
+        </h1>
+        <h2 className="text-white text-xl tracking-wide font-light uppercase">
+          Front-end Engineer
+        </h2></div>
+      </motion.div>
+
+      <motion.div className="relative z-10 pt-5 flex items-center justify-center gap-9">
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 100 }}
+          transition={{ duration: 0.75, delay: 1.5 }}
+        >
+          <motion.img
+            whileHover={{ rotateX: 10, rotateY: -40, scale: 1.5 }}
+            transition={{ type: "spring", stiffness: 200 }}
+            style={{ perspective: 1000 }}
+            src="/pixel.png"
+            alt="Pixel Art"
+            className="w-24"
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 70 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.6 }}
+          className="text-white max-w-lg"
+        >
+          <h2 className="text-3xl font-bold mb-4">
+            Hello, my name is Luiz Almeida.
+          </h2>
           <p className="text-lg">
-            a.k.a. <a href="https://github.com/lhas-dev" className="underline" target="_blank">@lhas-dev</a>. I am a <strong>Senior Front-end Engineer</strong> with 14 years of experience in web development. I&apos;m passionate about creating beautiful and functional interfaces. I&apos;m also a gamer, a pixel artist, and a music lover.
+            a.k.a.{" "}
+            <motion.a
+              whileHover={{ scale: 1.05, fontWeight: "bold" }}
+              transition={{ type: "spring", stiffness: 200 }}
+              href="https://github.com/lhas-dev"
+              className="underline inline-block"
+              target="_blank"
+            >
+              @lhas-dev
+            </motion.a>
+            . I am a <strong>Senior Front-end Engineer</strong> with 14 years of
+            experience in web development.
+            <br />
+            <br />I (usually) build softwares using{" "}
+            <motion.a
+              whileHover={{ scale: 1.05, fontWeight: "bold" }}
+              transition={{ type: "spring", stiffness: 200 }}
+              href="https://github.com/lhas-dev"
+              className="underline inline-block"
+              target="_blank"
+            >
+              React
+            </motion.a>{" "}
+            and{" "}
+            <motion.a
+              whileHover={{ scale: 1.05, fontWeight: "bold" }}
+              transition={{ type: "spring", stiffness: 200 }}
+              href="https://github.com/lhas-dev"
+              className="underline inline-block"
+              target="_blank"
+            >
+              Ruby on Rails
+            </motion.a>
+            .<br />
+            <br />I have a 2-year-old daughter named Rubi. I also love
+            practicing jiu-jitsu (purple belt), growing plants or having a
+            quality time with my family when I&apos;m not programming.
+            <br />
+            <br />I started on programming when I decided to create one custom
+            <motion.a
+              whileHover={{ scale: 1.05, fontWeight: "bold" }}
+              transition={{ type: "spring", stiffness: 200 }}
+              href="https://github.com/opentibia/server"
+              className="underline inline-block"
+              target="_blank"
+            >
+              Open Tibia Server
+            </motion.a> for me and my friends (like any teenage RPG fan would). <br /><br />After customizing some Lua and C++ scripts as a good <em>script kiddie</em>, I decided to start creating websites.
+            love to learn new things and I&apos;m always looking for new
+            challenges.
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
