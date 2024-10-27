@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full min-h-screen">
       <motion.video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full min-h-full object-cover"
         src="/bg.mp4"
         autoPlay
         loop
@@ -16,7 +16,7 @@ export default function Home() {
         transition={{ duration: 1 }}
       />
       <motion.div
-        className="absolute top-0 left-0 w-full h-full opacity-80"
+        className="absolute top-0 left-0 w-full min-h-full opacity-80"
         style={{
           background:
             "linear-gradient(0deg, rgba(0, 0, 250, 0.5), rgba(0, 0, 0, 0.9))",
@@ -42,7 +42,7 @@ export default function Home() {
         </h2></div>
       </motion.div>
 
-      <motion.div className="relative z-10 pt-5 flex items-center justify-center gap-9">
+      <motion.div className="relative z-10 pt-5 flex flex-col md:flex-row items-center justify-center gap-9">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -62,11 +62,8 @@ export default function Home() {
           initial={{ opacity: 0, y: 70 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.6 }}
-          className="text-white max-w-lg"
+          className="text-white max-w-lg px-10"
         >
-          <h2 className="text-3xl font-bold mb-4">
-            Hello, my name is Luiz Almeida.
-          </h2>
           <p className="text-lg">
             a.k.a.{" "}
             <motion.a
@@ -107,7 +104,7 @@ export default function Home() {
             quality time with my family when I&apos;m not programming.
             <br />
             <br />I started on programming when I decided to create one custom
-            <motion.a
+            {' '}<motion.a
               whileHover={{ scale: 1.05, fontWeight: "bold" }}
               transition={{ type: "spring", stiffness: 200 }}
               href="https://github.com/opentibia/server"
@@ -115,8 +112,9 @@ export default function Home() {
               target="_blank"
             >
               Open Tibia Server
-            </motion.a> for me and my friends (like any teenage RPG fan would). <br /><br />After customizing some Lua and C++ scripts as a good <em>script kiddie</em>, I decided to start creating websites.
-            love to learn new things and I&apos;m always looking for new
+            </motion.a> for me and my friends (like any teenage RPG fan would). <br /><br />After customizing some Lua and C++ scripts as a good <em>script kiddie</em>, I decided to start creating websites.<br /><br />
+            Since then, I worked with some cool startups and corporations like like DI.FM, Renner SA, Pepsi, mLabs and others.
+            <br /><br />I really enjoy shipping softwares to the internet, where a million people will use it. It is very satisfacting for me as developer see some software I helped being used by some random people.<br /><br />I love to learn new things and I&apos;m always looking for new
             challenges.
           </p>
         </motion.div>
