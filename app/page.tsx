@@ -21,7 +21,7 @@ export default function Home() {
         <div className="text-white max-w-lg">
           <h2 className="text-3xl font-bold mb-4">Hello, my name is Luiz Henrique.</h2>
           <p className="text-lg">
-            a.k.a. <a href="https://github.com/lhas-dev" className="underline" target="_blank">@lhas-dev</a>. I am a <strong>Senior Front-end Engineer</strong> with 14 years of experience in web development. I'm passionate about creating beautiful and functional interfaces. I'm also a gamer, a pixel artist, and a music lover.
+            a.k.a. <a href="https://github.com/lhas-dev" className="underline" target="_blank">@lhas-dev</a>. I am a <strong>Senior Front-end Engineer</strong> with 14 years of experience in web development. I&apos;m passionate about creating beautiful and functional interfaces. I&apos;m also a gamer, a pixel artist, and a music lover.
           </p>
         </div>
       </div>
