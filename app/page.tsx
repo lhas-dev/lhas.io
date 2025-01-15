@@ -1,157 +1,381 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { motion } from "framer-motion";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { AnimatePresence, motion } from "framer-motion";
+import SplitText from "../components/SplitText";
+import Waves from "@/components/Waves";
+import {
+  FaDownload,
+  FaEnvelope,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
 
 export default function Home() {
+  const techStack = [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Next.js",
+    "Ruby",
+    "Ruby on Rails",
+    "Docker",
+    "AWS",
+    "CI/CD",
+    "Git",
+    "GitHub",
+  ];
+  const projects = [
+    {
+      title: "DI.FM",
+      description: "Electronic music streaming service.",
+      image: "/di.jpg",
+      link: "https://di.fm",
+    },
+    {
+      title: "Headshot.club",
+      description: "AI Headshot Generator service.",
+      image: "/headshot.jpg",
+      link: "https://headshot.club",
+    },
+    {
+      title: "JoVE",
+      description: "Science video for university students.",
+      image: "/jove.jpg",
+      link: "https://jove.com",
+    },
+    {
+      title: "Rovrstack.ai",
+      description: "AI HealthTech platform for doctors.",
+      image: "/rovr.jpg",
+      link: "https://rovrstack.ai",
+    },
+  ];
+  const listVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const containerVariants = {
+    initial: { opacity: 0 },
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5, // Animates children one after the other
+      },
+    },
+  };
+
   return (
-    <div className="relative w-full">
-      <motion.video
-        className="absolute top-0 left-0 w-full h-full object-cover"
-        src="/bg2.mp4"
-        autoPlay
-        loop
-        muted
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      />
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full opacity-80"
-        style={{
-          background:
-            "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9))",
-        }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
-      ></motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="container mx-auto relative z-10 flex pt-5 items-center justify-center gap-4"
-      >
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.75, delay: 1.5 }}
-        >
+    <div className="min-h-screen">
+      <div className="container flex flex-col lg:flex-row gap-20 justify-center lg:justify-between mx-auto py-20 lg:items-center">
+        <div className="flex gap-10 w-full px-10 lg:px-0 lg:max-w-[600px]">
           <motion.img
-            whileHover={{ rotateX: 10, rotateY: -20, scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            style={{ perspective: 1000 }}
-            src="/pixel.png"
-            alt="Pixel Art"
-            className="w-24"
+            src="/me2.png"
+            alt="Luiz Almeida"
+            className="drop-shadow-2xl shrink-0 rounded-full w-[220px] h-[220px] object-cover object-center grayscale-[40%] transition-all hover:grayscale-[100%]"
           />
-        </motion.div>
-
-        <div>
-          <h1 className="text-white text-xl tracking-wide font-black uppercase">
-            Luiz Almeida
-          </h1>
-          <h2 className="text-white text-xl tracking-wide font-light uppercase">
-            Front-end Engineer
-          </h2>
-        </div>
-      </motion.div>
-
-      <motion.div className="container px-10 py-5 mx-auto relative z-10 pt-5 flex flex-col md:flex-row">
-        <motion.div
-          initial={{ opacity: 0, y: 70 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.6 }}
-          className="text-white"
-        >
-          <h1 className="text-white text-xl tracking-wide font-black uppercase">
-            About Me
-          </h1>
-          <p className="text-lg text-justify mt-4">
-            I&apos;m a Senior Front-End Engineer with 14 years of experience in
-            web development, specializing in building high-quality software
-            using React and Ruby on Rails.
-          </p>
-          <p className="text-lg text-justify mt-4">
-            Outside of coding, I&apos;m a dedicated father to my two-year-old
-            daughter, Rubi, and a passionate practitioner of jiu-jitsu, holding
-            a purple belt. When I&apos;m not immersed in technology, I enjoy
-            gardening and spending meaningful time with my family.
-          </p>
-          <h1 className="text-white text-xl tracking-wide font-black uppercase mt-6">
-            My Journey
-          </h1>
-          <p className="text-lg text-justify mt-4">
-            My programming journey began with a passion project: creating a
-            custom Open Tibia Server for my friends and me, driven by a love for
-            RPGs. I dove into scripting with Lua and C++, which sparked my
-            interest in building websites and eventually led me into web
-            development.
-          </p>
-          <h1 className="text-white text-xl tracking-wide font-black uppercase mt-6">
-            About My Career
-          </h1>
-          <p className="text-lg text-justify mt-4">
-            Over the years, I&apos;ve had the opportunity to work with a mix of
-            innovative startups and large corporations, contributing to projects
-            for companies like DI.FM, Renner SA, Pepsi, and mLabs.
-          </p>
-          <p className="text-lg text-justify mt-4">
-            In 2018, I joined a crypto startup during the Bitcoin boom, where I
-            developed solutions using web3.js to integrate the blockchain
-            technology into the web.
-          </p>
-          <p className="text-lg text-justify mt-4">
-            Currently, I&apos;m working on an AI project called cultiva.ai,
-            which empowers Cannabis patients to set up their own grow systems
-            with personalized guidance and resources.
-          </p>
-          <p className="text-lg text-justify mt-4">
-            I&apos;m passionate about delivering software to the web, knowing
-            that it will be used by millions worldwide. There&apos;s nothing
-            more rewarding as a developer than witnessing my work making a
-            difference for all the people around the world.
-          </p>
-          <p className="text-lg text-justify mt-4">
-            I&apos;m a lifelong learner, always on the lookout for new
-            challenges and opportunities to expand my skills.
-          </p>
-          <h1 className="text-white text-xl tracking-wide font-black uppercase mt-6">
-            Contact Me
-          </h1>
-          <div className="flex gap-6 mt-4 mb-4">
-            <motion.a
-              href="https://github.com/lhas-dev"
-              target="_blank"
-              className="text-white hover:text-gray-400 text-2xl"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              <FaGithub />
-            </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/luizhrqas/"
-              target="_blank"
-              className="text-white hover:text-blue-400 text-2xl"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              <FaLinkedin />
-            </motion.a>
-            <motion.a
-              href="https://www.instagram.com/lhas.js/"
-              target="_blank"
-              className="text-white hover:text-pink-400 text-2xl"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              <FaInstagram />
-            </motion.a>
+          <div className="flex flex-col">
+            <div className="">
+              <SplitText
+                id="about-me"
+                text="Luiz Almeida"
+                className="text-5xl font-semibold text-left"
+                animationFrom={{
+                  opacity: 0,
+                  transform: "translate3d(0,50px,0)",
+                }}
+                animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+                easing="easeOutCubic"
+                threshold={0.2}
+                rootMargin="-50px"
+              />
+            </div>
+            <p className="text-2xl font-normal text-left tracking-wide py-2">
+              Front End Engineer
+            </p>
+            <p className="text-lg font-light tracking-wider">
+              I turn ideas into pixel-perfect digital experiences for over a
+              decade.
+            </p>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+        <div className="w-full relative overflow-hidden px-10 lg:px-0">
+          <p className="text-lg font-light text-justify tracking-wider">
+            I'm a software engineer with over 14 years of experience. I'm
+            passionate about crafting{" "}
+            <em className="font-semibold">pixel-perfect user interfaces</em>{" "}
+            that blend thoughtful design with some advanced techniques in the
+            engineering side.
+            <br />
+            <br />I started my career in 2010 and have worked with various
+            technologies across industries, such as SaaS and e-commerce. I'm a{" "}
+            <strong className="font-semibold">fast-paced developer</strong>, and
+            I enjoy solving problems and being creative.
+            <br />
+            <br />
+            I've balanced simultaneous roles, delivering high-quality solutions
+            for both full-time and freelance engagements. I’m seeking new
+            opportunities to bring my skills to dynamic teams and help build
+            innovative and scalable software solutions using{" "}
+            <strong className="font-semibold">modern technologies</strong>.
+            <br />
+            <br />
+            In my free time, I'm usually practicing <em>Brazilian Jiu-Jitsu</em>
+            , gardening, hanging out with my wife, daughter and five cats.
+          </p>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="flex justify-center lg:justify-start flex-wrap flex-row gap-3 mt-10"
+          >
+            <motion.a
+              variants={listVariants}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.6, // Increase duration for smoother end
+                ease: [0.25, 0.1, 0.25, 1], // Custom cubic-bezier
+                damping: 20, // Controls oscillation and smoothness
+                stiffness: 50, // Adjusts the spring force
+                mass: 0.5, // Simulates lighter elements for smoother motion
+              }}
+              href="/resume.pdf"
+              target="_blank"
+              className="text-lg font-light tracking-wider flex items-center gap-2 bg-gray-900 text-gray-100 px-4 py-2 rounded-full"
+            >
+              <FaDownload className="text-2xl" /> Resume
+            </motion.a>
+            <motion.a
+              variants={listVariants}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              href="https://github.com/lhas-dev"
+              className="text-lg font-light tracking-wider flex items-center gap-2 bg-gray-900 text-gray-100 px-4 py-2 rounded-full"
+              target="_blank"
+            >
+              <FaGithub className="text-2xl" /> Github
+            </motion.a>
+            <motion.a
+              variants={listVariants}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              href="https://www.linkedin.com/in/luizhrqas/"
+              className="text-lg font-light tracking-wider flex items-center gap-2 bg-gray-900 text-gray-100 px-4 py-2 rounded-full"
+              target="_blank"
+            >
+              <FaLinkedin className="text-2xl" /> Linkedin
+            </motion.a>
+            <motion.a
+              variants={listVariants}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              href="https://www.instagram.com/lhas.js/"
+              className="text-lg font-light tracking-wider flex items-center gap-2 bg-gray-900 text-gray-100 px-4 py-2 rounded-full"
+              target="_blank"
+            >
+              <FaInstagram className="text-2xl" /> Instagram
+            </motion.a>
+            <motion.a
+              variants={listVariants}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              href="mailto:luizhrqas@gmail.com"
+              className="text-lg font-light tracking-wider flex items-center gap-2 bg-gray-900 text-gray-100 px-4 py-2 rounded-full"
+              target="_blank"
+            >
+              <FaEnvelope className="text-2xl" /> Email
+            </motion.a>
+          </motion.div>
+        </div>
+      </div>
+      <div className="w-full h-[300px] relative overflow-hidden opacity-10">
+        <Waves />
+      </div>
+
+      <div className="py-20 container mx-auto">
+        <div className="flex flex-col lg:flex-row gap-10 justify-between">
+          <div className="w-full text-center lg:text-left">
+            <SplitText
+              id="technologies"
+              text="Technologies"
+              className="text-5xl font-semibold text-left"
+              animationFrom={{
+                opacity: 0,
+                transform: "translate3d(0,50px,0)",
+              }}
+              animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+              easing="easeOutCubic"
+              threshold={0.2}
+              rootMargin="0px"
+            />
+          </div>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="flex flex-row flex-wrap  justify-center lg:justify-end gap-3  w-full"
+          >
+            <AnimatePresence>
+              {techStack.map((tech) => (
+                <motion.span
+                  key={tech}
+                  variants={listVariants}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 0.6, // Increase duration for smoother end
+                    ease: [0.25, 0.1, 0.25, 1], // Custom cubic-bezier
+                    damping: 20, // Controls oscillation and smoothness
+                    stiffness: 50, // Adjusts the spring force
+                    mass: 0.5, // Simulates lighter elements for smoother motion
+                  }}
+                  className="bg-neutral-900 hover:bg-neutral-700 transition-all text-gray-100 text-lg font-medium px-4 py-2 rounded-full"
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="py-20 container mx-auto">
+        <div className="flex flex-col lg:flex-row gap-10 justify-between">
+          <div className="flex-shrink-0 text-center lg:text-left">
+            <SplitText
+              id="projects"
+              text="Recent Projects"
+              className="text-5xl font-semibold text-left"
+              animationFrom={{
+                opacity: 0,
+                transform: "translate3d(0,50px,0)",
+              }}
+              animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+              easing="easeOutCubic"
+              threshold={0.2}
+              rootMargin="0px"
+            />
+          </div>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="flex flex-row flex-wrap gap-3 w-full justify-end"
+          >
+            <AnimatePresence>
+              {projects.map((project) => (
+                <motion.a
+                  key={project.title}
+                  href={project.link}
+                  target="_blank"
+                  variants={listVariants}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{
+                    duration: 0.6, // Increase duration for smoother end
+                    ease: [0.25, 0.1, 0.25, 1], // Custom cubic-bezier
+                    damping: 20, // Controls oscillation and smoothness
+                    stiffness: 50, // Adjusts the spring force
+                    mass: 0.5, // Simulates lighter elements for smoother motion
+                  }}
+                  className="w-[240px] shadow-2xl hover:drop-shadow-lg rounded-lg text-neutral-100 p-4 bg-neutral-900 hover:bg-neutral-800 hover:text-neutral-100 transition-all"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-[200px] object-cover object-top rounded-lg"
+                  />
+                  <h3 className="mt-4 text-2xl font-semibold">
+                    {project.title}
+                  </h3>
+                  <p className="text-lg font-light">{project.description}</p>
+                </motion.a>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </div>
+
+      <footer className="bg-gray-100 py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <ul className="flex space-x-6">
+                <li>
+                  <a
+                    href="#about-me"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    About Me
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#technologies"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Technologies
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#projects"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Recent Projects
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="flex space-x-4">
+              <a
+                href="https://github.com/seu-usuario"
+                target="_blank"
+                className="text-gray-600 hover:text-gray-900"
+              >
+                <FaGithub className="text-2xl" />
+              </a>
+              <a
+                href="https://linkedin.com/in/seu-usuario"
+                target="_blank"
+                className="text-gray-600 hover:text-gray-900"
+              >
+                <FaLinkedin className="text-2xl" />
+              </a>
+              <a
+                href="mailto:luizhrqas@gmail.com"
+                className="text-gray-600 hover:text-gray-900"
+              >
+                <FaEnvelope className="text-2xl" />
+              </a>
+              <a
+                href="https://www.instagram.com/lhas.js/"
+                target="_blank"
+                className="text-gray-600 hover:text-gray-900"
+              >
+                <FaInstagram className="text-2xl" />
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-6 text-center text-sm text-gray-500">
+            © 2025 Luiz Almeida a.k.a lhas.io. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
