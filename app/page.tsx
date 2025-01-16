@@ -121,7 +121,8 @@ export default function Home() {
             engineering side.
             <br />
             <br />I started my career in 2010 and have worked with various
-            technologies across industries, such as SaaS and e-commerce.
+            technologies across industries worldwide, such as SaaS and
+            e-commerce.
             <br />
             <br />
             I'm a{" "}
@@ -139,7 +140,7 @@ export default function Home() {
             <br />
             <br />
             In my free time, I'm usually practicing <em>Brazilian Jiu-Jitsu</em>
-            , gardening, hanging out with my wife, daughter and five cats.
+            , gardening, hanging out with my wife, daughter and four cats.
           </p>
           <motion.div
             initial="hidden"
@@ -358,14 +359,14 @@ export default function Home() {
 
             <div className="flex space-x-4">
               <a
-                href="https://github.com/seu-usuario"
+                href="https://github.com/lhas-dev"
                 target="_blank"
                 className="text-gray-600 hover:text-gray-900"
               >
                 <FaGithub className="text-2xl" />
               </a>
               <a
-                href="https://linkedin.com/in/seu-usuario"
+                href="https://www.linkedin.com/in/luizhrqas"
                 target="_blank"
                 className="text-gray-600 hover:text-gray-900"
               >
@@ -378,7 +379,7 @@ export default function Home() {
                 <FaEnvelope className="text-2xl" />
               </a>
               <a
-                href="https://www.instagram.com/lhas.js/"
+                href="https://www.instagram.com/lhas.js"
                 target="_blank"
                 className="text-gray-600 hover:text-gray-900"
               >
