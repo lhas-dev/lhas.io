@@ -19,6 +19,7 @@ export default function Home() {
     "TypeScript",
     "Node.js",
     "Next.js",
+    "Tailwind",
     "Ruby",
     "Ruby on Rails",
     "Docker",
@@ -71,19 +72,19 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <div className="container flex flex-col lg:flex-row gap-20 justify-center lg:justify-between mx-auto py-20 lg:items-center">
-        <div className="flex gap-10 w-full px-10 lg:px-0 lg:max-w-[600px]">
+      <div className="container flex flex-col xl:flex-row gap-20 lg:gap-10 justify-center lg:justify-between mx-auto py-10 lg:py-20 lg:px-10 xl:items-start">
+        <div className="flex flex-col md:flex-row gap-10 w-full px-10 lg:px-0 lg:max-w-[600px] lg:mx-auto">
           <motion.img
             src="/me2.png"
             alt="Luiz Almeida"
-            className="drop-shadow-2xl shrink-0 rounded-full w-[220px] h-[220px] object-cover object-center grayscale-[40%] transition-all hover:grayscale-[100%]"
+            className="mx-auto shadow-lg shrink-0 rounded-full w-[160px] h-[160px] object-cover object-center grayscale-[40%] transition-all hover:grayscale-[100%]"
           />
           <div className="flex flex-col">
-            <div className="">
+            <div className="text-center md:text-left">
               <SplitText
                 id="about-me"
                 text="Luiz Almeida"
-                className="text-5xl font-semibold text-left"
+                className="text-4xl xl:text-5xl font-semibold text-left"
                 animationFrom={{
                   opacity: 0,
                   transform: "translate3d(0,50px,0)",
@@ -94,33 +95,46 @@ export default function Home() {
                 rootMargin="-50px"
               />
             </div>
-            <p className="text-2xl font-normal text-left tracking-wide py-2">
+            <p className="text-2xl font-normal text-center md:text-left tracking-wide py-2">
               Front End Engineer
             </p>
-            <p className="text-lg font-light tracking-wider">
-              I turn ideas into pixel-perfect digital experiences for over a
-              decade.
+            <p className="text-center md:text-left font-light tracking-wider leading-7 mt-1">
+              I turn ideas into{" "}
+              <span className="bg-neutral-100 px-2.5 rounded-full py-2 text-neutral-900">
+                pixel-perfect
+              </span>{" "}
+              digital experiences for over a decade.
             </p>
           </div>
         </div>
+        <span className="w-full h-[1px] bg-neutral-100 xl:hidden"></span>
         <div className="w-full relative overflow-hidden px-10 lg:px-0">
           <p className="text-lg font-light text-justify tracking-wider">
-            I'm a software engineer with over 14 years of experience. I'm
-            passionate about crafting{" "}
-            <em className="font-semibold">pixel-perfect user interfaces</em>{" "}
+            I'm a software engineer with over 14 years of experience.
+            <br />
+            <br />
+            I'm passionate about crafting{" "}
+            <em className="font-semibold">
+              pixel-perfect user interfaces
+            </em>{" "}
             that blend thoughtful design with some advanced techniques in the
             engineering side.
             <br />
             <br />I started my career in 2010 and have worked with various
-            technologies across industries, such as SaaS and e-commerce. I'm a{" "}
+            technologies across industries, such as SaaS and e-commerce.
+            <br />
+            <br />
+            I'm a{" "}
             <strong className="font-semibold">fast-paced developer</strong>, and
             I enjoy solving problems and being creative.
             <br />
             <br />
             I've balanced simultaneous roles, delivering high-quality solutions
-            for both full-time and freelance engagements. I’m seeking new
-            opportunities to bring my skills to dynamic teams and help build
-            innovative and scalable software solutions using{" "}
+            for both full-time and freelance engagements.
+            <br />
+            <br />
+            I’m seeking new opportunities to bring my skills to dynamic teams
+            and help build innovative and scalable software solutions using{" "}
             <strong className="font-semibold">modern technologies</strong>.
             <br />
             <br />
@@ -131,7 +145,7 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="flex justify-center lg:justify-start flex-wrap flex-row gap-3 mt-10"
+            className="flex justify-center xl:justify-start flex-wrap flex-row gap-3 mt-10"
           >
             <motion.a
               variants={listVariants}
@@ -204,11 +218,11 @@ export default function Home() {
 
       <div className="py-20 container mx-auto">
         <div className="flex flex-col lg:flex-row gap-10 justify-between">
-          <div className="w-full text-center lg:text-left">
+          <div className="px-10 flex-shrink-0 text-center lg:text-left">
             <SplitText
               id="technologies"
               text="Technologies"
-              className="text-5xl font-semibold text-left"
+              className="text-4xl md:text-5xl font-semibold text-left"
               animationFrom={{
                 opacity: 0,
                 transform: "translate3d(0,50px,0)",
@@ -223,7 +237,7 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="flex flex-row flex-wrap  justify-center lg:justify-end gap-3  w-full"
+            className="flex flex-row flex-wrap  justify-center lg:justify-end gap-3  w-full lg:px-10"
           >
             <AnimatePresence>
               {techStack.map((tech) => (
@@ -250,13 +264,15 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="w-full h-[1px] bg-neutral-100"></div>
+
       <div className="py-20 container mx-auto">
         <div className="flex flex-col lg:flex-row gap-10 justify-between">
-          <div className="flex-shrink-0 text-center lg:text-left">
+          <div className="flex-shrink-0 text-center lg:text-left lg:px-10">
             <SplitText
               id="projects"
               text="Recent Projects"
-              className="text-5xl font-semibold text-left"
+              className="text-4xl md:text-5xl font-semibold text-left"
               animationFrom={{
                 opacity: 0,
                 transform: "translate3d(0,50px,0)",
@@ -271,7 +287,7 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="flex flex-row flex-wrap gap-3 w-full justify-end"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 w-full justify-end px-10"
           >
             <AnimatePresence>
               {projects.map((project) => (
@@ -290,7 +306,7 @@ export default function Home() {
                     stiffness: 50, // Adjusts the spring force
                     mass: 0.5, // Simulates lighter elements for smoother motion
                   }}
-                  className="w-[240px] shadow-2xl hover:drop-shadow-lg rounded-lg text-neutral-100 p-4 bg-neutral-900 hover:bg-neutral-800 hover:text-neutral-100 transition-all"
+                  className="w-full lg:max-w-[240px] shadow-2xl hover:drop-shadow-lg rounded-lg text-neutral-100 p-4 bg-neutral-900 hover:bg-neutral-800 hover:text-neutral-100 transition-all"
                 >
                   <img
                     src={project.image}
@@ -308,7 +324,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="bg-gray-100 py-8">
+      <footer className="bg-gray-100 py-8 px-10">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
