@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <div className="container flex flex-col xl:flex-row gap-20 lg:gap-10 justify-center lg:justify-between mx-auto py-10 lg:py-20 lg:px-10 xl:items-start">
-        <div className="flex flex-col md:flex-row gap-10 w-full px-10 lg:px-0 lg:max-w-[600px] lg:mx-auto">
+        <div className="flex flex-col md:flex-row gap-10 w-full px-10 lg:px-0 lg:max-w-[600px] lg:mx-auto lg:sticky top-0 lg:pt-10">
           <motion.img
             src="/me2.png"
             alt="Luiz Almeida"
