@@ -101,8 +101,8 @@ export default function Home() {
               className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] mx-auto rounded-full"
               style={{
                 backgroundImage: "url('/me3.jpg')",
-                backgroundSize: "108%",
-                backgroundPosition: "top center",
+                backgroundSize: "150%",
+                backgroundPosition: "70% 30%",
               }}
             ></motion.div>
           </div>
@@ -127,8 +127,8 @@ export default function Home() {
               transition={{ duration: 1, delay: 4.2 }}
               className="text-white text-4xl leading-tight font-regular max-w-2xl mx-auto px-10"
             >
-              <strong className="text-purple-500">Olá!</strong> With 14 years of
-              experience in front-end development, I specialize in crafting{" "}
+              <strong className="text-purple-500">Olá!</strong> With 10+ years
+              of experience in front-end development, I specialize in crafting{" "}
               <strong className="text-purple-500">pixel-perfect</strong>{" "}
               applications that scale.
             </motion.h3>
@@ -205,7 +205,7 @@ export default function Home() {
           <motion.a
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            href="/resume.pdf"
+            href="/resume-luiz-almeida.pdf"
             target="_blank"
             className="text-lg font-light tracking-wider flex items-center gap-2 bg-black border border-white shadow-md shadow-white/10 hover:shadow-purple-700/10 hover:bg-purple-700 hover:border-purple-700 hover:shadow-lg transition-all duration-300 text-gray-100 px-4 py-2 rounded-full"
           >
