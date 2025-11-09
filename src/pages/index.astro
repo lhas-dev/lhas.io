@@ -1,5 +1,6 @@
 ---
-
+import '../styles/global.css';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 ---
 
 <html lang="en">
@@ -8,9 +9,23 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>lhas.io</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<main class="min-h-screen flex items-center justify-center p-4">
+			<Card client:load className="w-full max-w-md">
+				<CardHeader>
+					<CardTitle className="text-4xl text-center">lhas.io</CardTitle>
+					<CardDescription className="text-center">
+						Welcome to my personal website
+					</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<p class="text-center text-muted-foreground">
+						Built with Astro, Tailwind CSS, and Shadcn UI
+					</p>
+				</CardContent>
+			</Card>
+		</main>
 	</body>
 </html>
