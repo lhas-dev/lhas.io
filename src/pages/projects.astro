@@ -1,6 +1,10 @@
 ---
 import '../styles/global.css';
+import 'balloon-css';
 import { Header } from '@/components/Header';
+import { ProjectCard } from '@/components/ProjectCard';
+import { Navigation } from '@/components/Navigation';
+import { projects } from '@/data/projects';
 ---
 
 <html lang="en">
@@ -10,13 +14,34 @@ import { Header } from '@/components/Header';
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Projects - Luiz Almeida</title>
+		<meta name="description" content="Explore my portfolio of projects including Cultiva.ai and Buy the Dip BTC Strategy Monitor. Front-end development with React, TypeScript, and modern web technologies." />
 	</head>
 	<body>
-		<Header client:load />
-		<main class="min-h-screen p-8">
-			<div class="container mx-auto max-w-4xl">
-				{/* Content will be added here */}
-			</div>
+		<Header client:idle />
+
+		<main class="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+			{/* Page Hero Section */}
+			<section class="container mx-auto max-w-6xl mb-16 text-center">
+				<h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] mb-6 [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]">
+					Projects
+				</h1>
+				<p class="text-lg sm:text-xl md:text-2xl font-light text-muted-foreground leading-relaxed max-w-3xl mx-auto [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]">
+					Transforming complex challenges into elegant, scalable applications
+				</p>
+			</section>
+
+			{/* Projects Grid */}
+			<section class="container mx-auto pb-2 max-w-6xl">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+					{projects.map((project, index) => (
+						<ProjectCard project={project} index={index} client:idle />
+					))}
+				</div>
+			</section>
 		</main>
+
+		<div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+			<Navigation delay={1} client:idle />
+		</div>
 	</body>
 </html>

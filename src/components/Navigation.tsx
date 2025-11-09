@@ -1,21 +1,38 @@
-import * as motion from 'motion/react-client';
-import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
+import * as motion from "motion/react-client";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import {
   GithubIcon,
   LinkedinIcon,
   InstagramIcon,
   MailIcon,
   DownloadIcon,
-} from '@/components/icons/SocialIcons';
+} from "@/components/icons/SocialIcons";
 
-export function Navigation() {
+export function Navigation({ delay = 0 }: { delay?: number }) {
   const links = [
-    { href: 'https://github.com/lhas-dev', icon: GithubIcon, label: 'GitHub' },
-    { href: 'https://www.linkedin.com/in/luizhrqas/', icon: LinkedinIcon, label: 'LinkedIn' },
-    { href: 'https://www.instagram.com/lhas.js/', icon: InstagramIcon, label: 'Instagram' },
-    { href: 'https://wa.me/5551991031355', icon: WhatsAppIcon, label: 'WhatsApp' },
-    { href: 'mailto:luizhrqas@gmail.com', icon: MailIcon, label: 'Email' },
-    { href: 'https://lhas-io.vercel.app/resume-luiz-almeida.pdf', icon: DownloadIcon, label: 'Resume', download: true },
+    { href: "https://github.com/lhas-dev", icon: GithubIcon, label: "GitHub" },
+    {
+      href: "https://www.linkedin.com/in/luizhrqas/",
+      icon: LinkedinIcon,
+      label: "LinkedIn",
+    },
+    {
+      href: "https://www.instagram.com/lhas.js/",
+      icon: InstagramIcon,
+      label: "Instagram",
+    },
+    {
+      href: "https://wa.me/5551991031355",
+      icon: WhatsAppIcon,
+      label: "WhatsApp",
+    },
+    { href: "mailto:luizhrqas@gmail.com", icon: MailIcon, label: "Email" },
+    {
+      href: "https://lhas-io.vercel.app/resume-luiz-almeida.pdf",
+      icon: DownloadIcon,
+      label: "Resume",
+      download: true,
+    },
   ];
 
   // Base delay for icons to appear after Hero animations + 0.3s buffer
@@ -33,7 +50,7 @@ export function Navigation() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              delay: baseDelay + index * staggerDelay,
+              delay: !!delay ? delay : baseDelay + index * staggerDelay,
               duration: 0.5,
               ease: "easeOut",
             }}
