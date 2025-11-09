@@ -1,6 +1,6 @@
 import { BJJBelt } from "@/components/BJJBelt";
 import * as motion from "motion/react-client";
-import { Code } from "lucide-react";
+import { CodeIcon } from "@/components/icons/SocialIcons";
 import { useState, useEffect } from "react";
 
 export function Hero() {
@@ -37,7 +37,7 @@ export function Hero() {
               transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
               className="absolute top-[-170px] left-[-100px] lg:w-[300px] lg:h-[300px] inset-0 flex items-center justify-center -z-10"
             >
-              <Code className="w-full h-full text-white opacity-[0.03]" />
+              <CodeIcon className="w-full h-full text-white opacity-[0.03]" />
             </motion.div>
 
             <img
@@ -52,50 +52,37 @@ export function Hero() {
           <div className="text-center lg:text-left space-y-6 lg:space-y-8 max-w-2xl">
             {/* Main headline - plain text on server, animated on client */}
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]">
-              {!isClient ? (
-                // Server-side: plain text for SEO
-                <>
-                  {text1}
-                  <span className="text-primary/90 -indent-[9999px]">
-                    {text2}
-                  </span>
-                </>
-              ) : (
-                // Client-side: animated typing effect
-                <>
-                  {text1.split("").map((char, index) => (
+              <>
+                {text1.split("").map((char, index) => (
+                  <motion.span
+                    key={`text1-${index}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      delay: typingStartDelay + index * charDelay,
+                      duration: 0.1,
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+                <span className="text-primary/90">
+                  {text2.split("").map((char, index) => (
                     <motion.span
-                      key={`text1-${index}`}
+                      key={`text2-${index}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{
-                        delay: typingStartDelay + index * charDelay,
+                        delay:
+                          typingStartDelay + text1Duration + index * charDelay,
                         duration: 0.1,
                       }}
                     >
                       {char}
                     </motion.span>
                   ))}
-                  <span className="text-primary/90">
-                    {text2.split("").map((char, index) => (
-                      <motion.span
-                        key={`text2-${index}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{
-                          delay:
-                            typingStartDelay +
-                            text1Duration +
-                            index * charDelay,
-                          duration: 0.1,
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                  </span>
-                </>
-              )}
+                </span>
+              </>
             </h1>
 
             {/* Subheading - fade in after typing completes */}

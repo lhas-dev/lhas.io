@@ -4,6 +4,7 @@ export function Header() {
   const [currentPath, setCurrentPath] = useState("");
 
   useEffect(() => {
+    console.log("ae", window.location.pathname);
     setCurrentPath(window.location.pathname);
   }, []);
 
@@ -17,6 +18,9 @@ export function Header() {
   const getLinkClassName = (path: string) => {
     const baseClasses =
       "text-sm sm:text-base px-2 py-1 rounded-md transition-all flex items-center";
+
+    console.log("path", isActive(path));
+    console.log("isActive", isActive(path));
 
     if (isActive(path)) {
       return `${baseClasses} bg-white text-black`;

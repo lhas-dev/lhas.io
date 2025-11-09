@@ -1,21 +1,21 @@
-import { Github, Linkedin, Instagram, Mail, Download } from 'lucide-react';
-import { motion } from 'framer-motion';
+import * as motion from 'motion/react-client';
 import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  GithubIcon,
+  LinkedinIcon,
+  InstagramIcon,
+  MailIcon,
+  DownloadIcon,
+} from '@/components/icons/SocialIcons';
 
 export function Navigation() {
   const links = [
-    { href: 'https://github.com/lhas-dev', icon: Github, label: 'GitHub' },
-    { href: 'https://www.linkedin.com/in/luizhrqas/', icon: Linkedin, label: 'LinkedIn' },
-    { href: 'https://www.instagram.com/lhas.js/', icon: Instagram, label: 'Instagram' },
+    { href: 'https://github.com/lhas-dev', icon: GithubIcon, label: 'GitHub' },
+    { href: 'https://www.linkedin.com/in/luizhrqas/', icon: LinkedinIcon, label: 'LinkedIn' },
+    { href: 'https://www.instagram.com/lhas.js/', icon: InstagramIcon, label: 'Instagram' },
     { href: 'https://wa.me/5551991031355', icon: WhatsAppIcon, label: 'WhatsApp' },
-    { href: 'mailto:luizhrqas@gmail.com', icon: Mail, label: 'Email' },
-    { href: 'https://lhas-io.vercel.app/resume-luiz-almeida.pdf', icon: Download, label: 'Resume', download: true },
+    { href: 'mailto:luizhrqas@gmail.com', icon: MailIcon, label: 'Email' },
+    { href: 'https://lhas-io.vercel.app/resume-luiz-almeida.pdf', icon: DownloadIcon, label: 'Resume', download: true },
   ];
 
   // Base delay for icons to appear after Hero animations + 0.3s buffer
@@ -24,38 +24,31 @@ export function Navigation() {
   const staggerDelay = 0.1;
 
   return (
-    <TooltipProvider delayDuration={200}>
-      <nav className="flex justify-center gap-4">
-        {links.map((link, index) => {
-          const Icon = link.icon;
-          return (
-            <Tooltip key={link.label}>
-              <TooltipTrigger asChild>
-                <motion.a
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: baseDelay + index * staggerDelay,
-                    duration: 0.5,
-                    ease: "easeOut",
-                  }}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-lg hover:bg-secondary hover:scale-125 transition-all duration-300 ease-in-out active:scale-95"
-                  aria-label={link.label}
-                  {...(link.download && { download: true })}
-                >
-                  <Icon className="w-5 h-5" />
-                </motion.a>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{link.label}</p>
-              </TooltipContent>
-            </Tooltip>
-          );
-        })}
-      </nav>
-    </TooltipProvider>
+    <nav className="flex justify-center gap-4">
+      {links.map((link, index) => {
+        const Icon = link.icon;
+        return (
+          <motion.a
+            key={link.label}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: baseDelay + index * staggerDelay,
+              duration: 0.5,
+              ease: "easeOut",
+            }}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-lg hover:bg-secondary hover:scale-125 transition-all duration-300 ease-in-out active:scale-95"
+            aria-label={link.label}
+            data-balloon-pos="up"
+            {...(link.download && { download: true })}
+          >
+            <Icon className="w-5 h-5" />
+          </motion.a>
+        );
+      })}
+    </nav>
   );
 }

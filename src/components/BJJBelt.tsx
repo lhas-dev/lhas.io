@@ -1,16 +1,11 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-
 export function BJJBelt() {
   return (
-    <TooltipProvider delayDuration={200}>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className="cursor-pointer hover:scale-110 transition-transform duration-200">
+    <div
+      className="relative z-20 cursor-pointer hover:scale-110 transition-transform duration-200"
+      aria-label="I love martial arts and I'm a Brazilian Jiu-jitsu Purple Belt!"
+      data-balloon-pos="up"
+      data-balloon-length="large"
+    >
             <svg
               width="64"
               height="24"
@@ -56,12 +51,6 @@ export function BJJBelt() {
               <rect x="28" y="10" width="1" height="1" fill="#A78BFA" opacity="0.6" />
               <rect x="36" y="15" width="1" height="1" fill="#A78BFA" opacity="0.6" />
             </svg>
-          </div>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>I love martial arts and I'm a Brazilian Jiu-jitsu Purple Belt!</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    </div>
   )
 }

@@ -1,9 +1,9 @@
 ---
 import '../styles/global.css';
+import 'balloon-css';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Navigation } from '@/components/Navigation';
-import { Technologies } from '@/components/Technologies';
 ---
 
 <html lang="en">
@@ -84,12 +84,12 @@ import { Technologies } from '@/components/Technologies';
 		</script>
 	</head>
 	<body>
-		<Header />
+		<Header client:idle />
 
-		<Hero client:load />
+		<Hero client:idle />
 
 		<div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 space-y-8 fixed bottom-0 left-0 right-0">
-			<Navigation client:load />
+			<Navigation client:idle />
 		</div>
 	</body>
 </html>
