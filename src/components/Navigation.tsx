@@ -1,5 +1,6 @@
-import { Github, Linkedin, Instagram, Mail, Download, MessageCircle } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 import {
   Tooltip,
   TooltipContent,
@@ -12,7 +13,7 @@ export function Navigation() {
     { href: 'https://github.com/lhas-dev', icon: Github, label: 'GitHub' },
     { href: 'https://www.linkedin.com/in/luizhrqas/', icon: Linkedin, label: 'LinkedIn' },
     { href: 'https://www.instagram.com/lhas.js/', icon: Instagram, label: 'Instagram' },
-    { href: 'https://wa.me/5551991031355', icon: MessageCircle, label: 'WhatsApp' },
+    { href: 'https://wa.me/5551991031355', icon: WhatsAppIcon, label: 'WhatsApp' },
     { href: 'mailto:luizhrqas@gmail.com', icon: Mail, label: 'Email' },
     { href: 'https://lhas-io.vercel.app/resume-luiz-almeida.pdf', icon: Download, label: 'Resume', download: true },
   ];

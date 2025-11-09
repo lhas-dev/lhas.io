@@ -1,5 +1,6 @@
 import { BJJBelt } from "@/components/BJJBelt";
 import { motion } from "framer-motion";
+import { Code } from "lucide-react";
 
 export function Hero() {
   const text1 = "Crafting ";
@@ -21,20 +22,25 @@ export function Hero() {
 
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
-          {/* Avatar with BJJ Belt easter egg - animated */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: heroStartDelay, duration: 0.6, ease: "easeOut" }}
-            className="flex flex-col items-center gap-3"
-          >
+          {/* Avatar with BJJ Belt easter egg */}
+          <div className="relative flex flex-col items-center gap-3">
+            {/* Large developer icon background */}
+            <motion.div
+              initial={{ opacity: 0, y: -80 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
+              className="absolute top-[-170px] left-[-100px] lg:w-[300px] lg:h-[300px] inset-0 flex items-center justify-center -z-10"
+            >
+              <Code className="w-full h-full text-white opacity-[0.03]" />
+            </motion.div>
+
             <img
               src="https://lhas-io.vercel.app/me3.jpg"
               alt="Luiz Almeida"
-              className="w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-full object-cover shadow-2xl"
+              className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-full object-cover shadow-2xl"
             />
             <BJJBelt />
-          </motion.div>
+          </div>
 
           {/* Content */}
           <div className="text-center lg:text-left space-y-6 lg:space-y-8 max-w-2xl">
@@ -60,7 +66,8 @@ export function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{
-                      delay: typingStartDelay + text1Duration + index * charDelay,
+                      delay:
+                        typingStartDelay + text1Duration + index * charDelay,
                       duration: 0.1,
                     }}
                   >

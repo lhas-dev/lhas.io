@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 export function Header() {
@@ -27,10 +26,7 @@ export function Header() {
   };
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+    <header
       className="fixed top-0 z-50 w-full border-b border-border/40 backdrop-blur-xl bg-gradient-to-b from-neutral-900/90 to-black/90 shadow-sm"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,6 +51,6 @@ export function Header() {
           </nav>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }
