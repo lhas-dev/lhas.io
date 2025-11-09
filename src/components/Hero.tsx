@@ -1,8 +1,14 @@
 import { BJJBelt } from "@/components/BJJBelt";
-import { motion } from "framer-motion";
+import * as motion from "motion/react-client";
 import { Code } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function Hero() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const text1 = "Crafting ";
   const text2 = "Digital Experiences";
 
@@ -35,7 +41,7 @@ export function Hero() {
             </motion.div>
 
             <img
-              src="https://lhas-io.vercel.app/me3.jpg"
+              src="/me.jpg"
               alt="Luiz Almeida"
               className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-full object-cover shadow-2xl"
             />
@@ -44,37 +50,52 @@ export function Hero() {
 
           {/* Content */}
           <div className="text-center lg:text-left space-y-6 lg:space-y-8 max-w-2xl">
-            {/* Main headline - letter by letter animation */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1]">
-              {text1.split("").map((char, index) => (
-                <motion.span
-                  key={`text1-${index}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{
-                    delay: typingStartDelay + index * charDelay,
-                    duration: 0.1,
-                  }}
-                >
-                  {char}
-                </motion.span>
-              ))}
-              <span className="text-primary/90">
-                {text2.split("").map((char, index) => (
-                  <motion.span
-                    key={`text2-${index}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      delay:
-                        typingStartDelay + text1Duration + index * charDelay,
-                      duration: 0.1,
-                    }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </span>
+            {/* Main headline - plain text on server, animated on client */}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]">
+              {!isClient ? (
+                // Server-side: plain text for SEO
+                <>
+                  {text1}
+                  <span className="text-primary/90 -indent-[9999px]">
+                    {text2}
+                  </span>
+                </>
+              ) : (
+                // Client-side: animated typing effect
+                <>
+                  {text1.split("").map((char, index) => (
+                    <motion.span
+                      key={`text1-${index}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{
+                        delay: typingStartDelay + index * charDelay,
+                        duration: 0.1,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                  <span className="text-primary/90">
+                    {text2.split("").map((char, index) => (
+                      <motion.span
+                        key={`text2-${index}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{
+                          delay:
+                            typingStartDelay +
+                            text1Duration +
+                            index * charDelay,
+                          duration: 0.1,
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
+                </>
+              )}
             </h1>
 
             {/* Subheading - fade in after typing completes */}
@@ -86,7 +107,7 @@ export function Hero() {
                 duration: 0.8,
                 ease: "easeOut",
               }}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground leading-relaxed [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]"
             >
               Specialist Front-end Engineer with 10+ years building scalable web
               and mobile applications
@@ -101,10 +122,13 @@ export function Hero() {
                 duration: 0.8,
                 ease: "easeOut",
               }}
-              className="text-base sm:text-lg md:text-xl font-light text-muted-foreground/80"
+              className="text-base sm:text-lg md:text-xl font-light text-muted-foreground/80 [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]"
             >
-              LATAM 🇧🇷 • fast-paced developer, who enjoys crafting exceptional
-              digital experiences worldwide
+              LATAM 🇧🇷 • Fast-paced developer, who enjoys crafting exceptional
+              digital experiences worldwide •{" "}
+              <em className="opacity-40 font-light not-italic">
+                React, React Native, Ruby on Rails, TypeScript
+              </em>
             </motion.p>
           </div>
         </div>
