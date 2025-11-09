@@ -1,8 +1,7 @@
 ---
 import '../styles/global.css';
 import { Header } from '@/components/Header';
-import { Logo } from '@/components/Logo';
-import { Avatar } from '@/components/Avatar';
+import { Hero } from '@/components/Hero';
 import { Navigation } from '@/components/Navigation';
 import { Technologies } from '@/components/Technologies';
 ---
@@ -17,38 +16,12 @@ import { Technologies } from '@/components/Technologies';
 	</head>
 	<body>
 		<Header client:load />
-		<main class="min-h-screen flex items-center justify-center p-8 pt-20">
-			<div class="w-full max-w-2xl space-y-8">
-				<Logo client:load />
 
-				<Avatar client:load />
+		<Hero client:load />
 
-				<section class="space-y-4">
-					<h2 class="text-2xl font-semibold text-center">About Me</h2>
-					<p class="text-center text-lg">
-						Olá! With 10+ years of experience in front-end development, I specialize in crafting pixel-perfect applications that scale.
-					</p>
-				</section>
+		<div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 space-y-16 fixed bottom-0 left-0 right-0">
+			<Navigation client:load />
 
-				<section class="space-y-4">
-					<p class="text-center text-muted-foreground leading-relaxed">
-						I'm a fast-paced developer from 🇧🇷 Brazil. My focus on user experience has enabled companies of all sizes to achieve their goals.
-					</p>
-					<p class="text-center text-muted-foreground leading-relaxed">
-						Got an idea? Amazing, let's make it real. 🚀
-					</p>
-					<p class="text-center text-muted-foreground leading-relaxed">
-						Whether you're an entrepreneur, a startup founder, or a business looking for a front-end specialist.
-					</p>
-					<p class="text-center text-muted-foreground leading-relaxed">
-						I'm here to turn concepts into awesome apps. Let's talk!
-					</p>
-				</section>
-
-				<Navigation client:load />
-
-				<Technologies client:load />
-			</div>
-		</main>
+		</div>
 	</body>
 </html>
