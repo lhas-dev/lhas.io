@@ -29,13 +29,13 @@ export function Header() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/40 backdrop-blur-xl bg-gradient-to-b from-neutral-900/90 to-black/90 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-14 sm:h-16 items-center gap-20">
+        <div className="flex h-14 sm:h-18 items-center gap-20">
           <a
             href="/"
-            className="text-xl lg:ml-40 font-bold hover:text-primary/80 transition-colors"
+            className="text-2xl lg:ml-40 font-bold hover:text-primary/80 transition-colors flex items-center justify-center gap-2"
           >
             Luiz Almeida{" "}
-            <span className="font-light text-sm lg:text-md">
+            <span className="font-light text-sm lg:text-lg">
               Front-end Engineer
             </span>
           </a>

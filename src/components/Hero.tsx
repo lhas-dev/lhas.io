@@ -2,6 +2,7 @@ import { BJJBelt } from "@/components/BJJBelt";
 import * as motion from "motion/react-client";
 import { CodeIcon } from "@/components/icons/SocialIcons";
 import { useState, useEffect } from "react";
+import { Badges } from "@/components/Badges";
 
 export function Hero() {
   const [isClient, setIsClient] = useState(false);
@@ -26,20 +27,19 @@ export function Hero() {
       {/* Simple linear gradient from gray to black */}
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-800 to-black -z-10" />
 
+      {/* Large developer icon background */}
+      <motion.div
+        initial={{ opacity: 0, y: -80 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
+        className="absolute top-[0%] left-[25%] lg:w-[100%] lg:h-[100%] inset-0 flex items-center justify-center -z-10"
+      >
+        <CodeIcon className="w-full h-full text-white opacity-[0.03]" />
+      </motion.div>
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-16">
           {/* Avatar with BJJ Belt easter egg */}
           <div className="relative flex flex-col items-center gap-3">
-            {/* Large developer icon background */}
-            <motion.div
-              initial={{ opacity: 0, y: -80 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
-              className="absolute top-[-170px] left-[-100px] lg:w-[300px] lg:h-[300px] inset-0 flex items-center justify-center -z-10"
-            >
-              <CodeIcon className="w-full h-full text-white opacity-[0.03]" />
-            </motion.div>
-
             <img
               src="/me.jpg"
               alt="Luiz Almeida"
@@ -117,6 +117,9 @@ export function Hero() {
                 React, React Native, Ruby on Rails, TypeScript
               </em>
             </motion.p>
+
+            {/* Badges */}
+            <Badges />
           </div>
         </div>
       </div>
