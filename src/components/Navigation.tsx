@@ -41,7 +41,7 @@ export function Navigation({ delay = 0 }: { delay?: number }) {
   const staggerDelay = 0.1;
 
   return (
-    <nav className="flex justify-center gap-4">
+    <nav className="relative flex justify-center gap-4 pt-10">
       {links.map((link, index) => {
         const Icon = link.icon;
         return (
@@ -57,7 +57,7 @@ export function Navigation({ delay = 0 }: { delay?: number }) {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg hover:bg-secondary hover:scale-125 transition-all duration-300 ease-in-out active:scale-95"
+            className="p-2 relative z-10 rounded-lg hover:bg-secondary hover:scale-125 transition-all duration-300 ease-in-out active:scale-95"
             aria-label={link.label}
             data-balloon-pos="up"
             {...(link.download && { download: true })}

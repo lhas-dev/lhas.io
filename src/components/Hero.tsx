@@ -23,7 +23,7 @@ export function Hero() {
   const typingStartDelay = 1.4; // Avatar appears at 0.8s, takes 0.6s = 1.4s
 
   return (
-    <section className="relative min-h-[100vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative lg:min-h-[100vh] flex items-center justify-center px-4 pt-6 pb-30 sm:px-6 lg:px-8 overflow-hidden">
       {/* Simple linear gradient from gray to black */}
       <div className="absolute inset-0 bg-gradient-to-b from-neutral-800 to-black -z-10" />
 
@@ -117,9 +117,6 @@ export function Hero() {
                 React, React Native, Ruby on Rails, TypeScript
               </em>
             </motion.p>
-
-            {/* Badges */}
-            <Badges />
           </div>
         </div>
       </div>
