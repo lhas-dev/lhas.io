@@ -1,43 +1,105 @@
-# Astro Starter Kit: Minimal
+# lhas.io
 
-```sh
-npm create astro@latest -- --template minimal
+<div align="center">
+
+<video src="https://github.com/lhas-dev/lhas.io/raw/main/public/animated-logo.mp4" width="600" autoplay loop muted playsinline></video>
+
+Personal portfolio and project showcase for **Luiz Almeida** — Front-end Engineer with 10+ years of experience building scalable web and mobile applications.
+
+[Live Site](https://lhas.io) · [LinkedIn](https://linkedin.com/in/luizhrqas) · [GitHub](https://github.com/lhas-dev)
+
+</div>
+
+---
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────┐
+│                     Astro (SSG)                     │
+│              Static Site Generation Layer           │
+├──────────────┬──────────────────┬───────────────────┤
+│   Pages      │   Components     │   Data            │
+│              │                  │                   │
+│ index.astro  │ Hero.tsx         │ projects.ts       │
+│ projects/    │ Header.tsx       │ (project entries) │
+│  [slug].astro│ ProjectCard.tsx  │                   │
+│              │ Navigation.tsx   │                   │
+│              │ Badges.tsx       │                   │
+├──────────────┴──────────────────┴───────────────────┤
+│            React 19                                 │
+│         Hydrated via Astro client:idle              │
+├─────────────────────────────────────────────────────┤
+│  Tailwind CSS 4 · Framer Motion · Custom Theming    │
+└─────────────────────────────────────────────────────┘
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The project follows **Astro's Islands Architecture** — pages are statically generated at build time, while interactive components (animations, hover effects, typing hero) are hydrated as React islands on the client. This approach delivers fast initial page loads with rich interactivity where needed.
 
-## 🚀 Project Structure
+**Key directories:**
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── pages/            # Astro file-based routing (home, projects, project detail)
+├── components/       # React components with Framer Motion animations
+│   ├── icons/        # SVG icon components
+│   └── ui/           # Reusable UI primitives (card, etc.)
+├── data/             # Project entries and content
+├── types/            # TypeScript interfaces
+├── lib/              # Utility functions
+└── styles/           # Global CSS, theme variables, Tailwind config
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Tech Stack
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Layer      | Technology                |
+| ---------- | ------------------------- |
+| Framework  | Astro 5                   |
+| UI Library | React 19                  |
+| Language   | TypeScript                |
+| Styling    | Tailwind CSS 4            |
+| Animations | Framer Motion 12          |
+| Fonts      | Urbanist, Source Sans 3   |
+| Build Tool | Vite (via Astro)          |
+| Utilities  | clsx, tailwind-merge, cva |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Getting Started
 
-## 🧞 Commands
+**Prerequisites:** Node.js 18+ and npm (or your preferred package manager).
 
-All commands are run from the root of the project, from a terminal:
+```bash
+# Clone the repository
+git clone https://github.com/lhas-dev/lhas.io.git
+cd lhas.io
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+# Install dependencies
+npm install
 
-## 👀 Want to learn more?
+# Start the dev server (http://localhost:4321)
+npm run dev
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Available Scripts
+
+| Command           | Description                            |
+| ----------------- | -------------------------------------- |
+| `npm run dev`     | Start local dev server with hot reload |
+| `npm run build`   | Build production site to `./dist/`     |
+| `npm run preview` | Preview the production build locally   |
+
+## Roadmap
+
+- [ ] **Blog section** — MDX-powered articles with syntax highlighting, reading time estimates, and tag filtering
+- [ ] **Dark/Light theme toggle** — Persistent theme switcher with system preference detection
+- [ ] **Project case studies** — Expanded project pages with problem/solution/impact breakdowns and image galleries
+- [ ] **RSS feed** — Auto-generated feed for blog posts
+- [ ] **i18n support** — Portuguese (BR) and English versions with language switcher
+- [ ] **Analytics dashboard** — Privacy-friendly visitor stats with Plausible or Umami
+- [ ] **Testimonials section** — Client and colleague quotes with carousel display
+- [ ] **Interactive resume** — Timeline-based career history with expandable role details
+- [ ] **Open source contributions** — Auto-fetched GitHub activity and contribution highlights
+- [ ] **Contact form** — Serverless form handling with validation and spam protection
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
