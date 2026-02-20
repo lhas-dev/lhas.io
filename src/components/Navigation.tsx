@@ -28,7 +28,7 @@ export function Navigation({ delay = 0 }: { delay?: number }) {
     },
     { href: "mailto:luizhrqas@gmail.com", icon: MailIcon, label: "Email" },
     {
-      href: "https://lhas-io.vercel.app/resume-luiz-almeida.pdf",
+      href: "https://lhas-io/resume.pdf",
       icon: DownloadIcon,
       label: "Resume",
       download: true,
