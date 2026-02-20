@@ -25,7 +25,7 @@ export function Hero() {
   return (
     <section className="relative lg:min-h-[100vh] flex items-center justify-center px-4 pt-6 pb-30 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background matching video color */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#060606] to-black -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#070707] to-[#070707] -z-10" />
 
       {/* Large developer icon background */}
       <motion.div
@@ -40,7 +40,10 @@ export function Hero() {
         <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-16">
           {/* Avatar with animated logo and BJJ Belt easter egg */}
           <div className="relative flex flex-col items-center gap-3">
-            <video
+            <motion.video
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1, ease: "easeOut" }}
               src="/animated-logo.mp4"
               autoPlay
               muted
@@ -116,10 +119,20 @@ export function Hero() {
             >
               LATAM 🇧🇷 • Fast-paced developer, who enjoys crafting exceptional
               digital experiences worldwide •{" "}
-              <em className="opacity-40 font-light not-italic">
-                React, React Native, Ruby on Rails, TypeScript
-              </em>
             </motion.p>
+
+            <motion.em
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 0.5, y: 0 }}
+              transition={{
+                delay: typingStartDelay + totalTypingDuration + 2,
+                duration: 1,
+                ease: "easeOut",
+              }}
+              className="text-base sm:text-lg md:text-xl font-light text-muted-foreground/80 [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]"
+            >
+              React, React Native, Ruby on Rails, TypeScript
+            </motion.em>
           </div>
         </div>
       </div>
