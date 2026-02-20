@@ -47,6 +47,9 @@ export function Header() {
             <a href="/projects" className={getLinkClassName("/projects")}>
               Projects
             </a>
+            <a href="/blog" className={getLinkClassName("/blog")}>
+              Blog
+            </a>
           </nav>
         </div>
       </div>

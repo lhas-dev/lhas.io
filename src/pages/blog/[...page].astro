@@ -1,0 +1,105 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { BlogPostCard } from '@/components/BlogPostCard';
+import { FeaturedCarousel } from '@/components/FeaturedCarousel';
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  return paginate(sorted, { pageSize: 9 });
+}
+
+const { page } = Astro.props;
+const isFirstPage = page.currentPage === 1;
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const featuredPosts = allPosts
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const featuredForCarousel = featuredPosts.map((p) => ({
+  title: p.data.title,
+  description: p.data.description,
+  slug: p.id,
+  coverSrc: p.data.cover?.src,
+}));
+---
+
+<BaseLayout title="Blog" description="Thoughts on front-end development, React, TypeScript, and modern web technologies.">
+	<main class="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+		{/* Page Header */}
+		<section class="container mx-auto max-w-6xl mb-12 text-center">
+			<h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] mb-6 [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]">
+				Blog
+			</h1>
+			<p class="text-lg sm:text-xl md:text-2xl font-light text-muted-foreground leading-relaxed max-w-3xl mx-auto [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]">
+				Thoughts on front-end development, architecture, and modern web technologies
+			</p>
+		</section>
+
+		{/* Featured Carousel - only on page 1 */}
+		{isFirstPage && featuredForCarousel.length > 0 && (
+			<section class="container mx-auto max-w-6xl mb-12">
+				<FeaturedCarousel posts={featuredForCarousel} client:idle />
+			</section>
+		)}
+
+		{/* Posts Grid */}
+		<section class="container mx-auto max-w-6xl">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{page.data.map((post: any, index: number) => (
+					<BlogPostCard
+						title={post.data.title}
+						description={post.data.description}
+						date={post.data.date.toLocaleDateString('en-US', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric',
+						})}
+						slug={post.id}
+						tags={post.data.tags}
+						coverSrc={post.data.cover?.src}
+						index={index}
+						client:idle
+					/>
+				))}
+			</div>
+		</section>
+
+		{/* Pagination */}
+		{page.lastPage > 1 && (
+			<nav class="container mx-auto max-w-6xl mt-12 flex items-center justify-center gap-4">
+				{page.url.prev ? (
+					<a
+						href={page.url.prev}
+						class="px-4 py-2 rounded-lg bg-secondary/40 text-sm font-light text-foreground border border-border/40 hover:bg-secondary/60 transition-colors"
+					>
+						&larr; Previous
+					</a>
+				) : (
+					<span class="px-4 py-2 rounded-lg text-sm font-light text-muted-foreground/40">
+						&larr; Previous
+					</span>
+				)}
+
+				<span class="text-sm text-muted-foreground">
+					Page {page.currentPage} of {page.lastPage}
+				</span>
+
+				{page.url.next ? (
+					<a
+						href={page.url.next}
+						class="px-4 py-2 rounded-lg bg-secondary/40 text-sm font-light text-foreground border border-border/40 hover:bg-secondary/60 transition-colors"
+					>
+						Next &rarr;
+					</a>
+				) : (
+					<span class="px-4 py-2 rounded-lg text-sm font-light text-muted-foreground/40">
+						Next &rarr;
+					</span>
+				)}
+			</nav>
+		)}
+	</main>
+</BaseLayout>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+	<main class="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+		{/* Back Button */}
+		<div class="container mx-auto max-w-3xl mb-8">
+			<a
+				href="/blog"
+				class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+			>
+				<svg
+					class="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M10 19l-7-7m0 0l7-7m-7 7h18"
+					/>
+				</svg>
+				Back to Blog
+			</a>
+		</div>
+
+		{/* Post Header */}
+		<header class="container mx-auto max-w-3xl mb-12 space-y-6">
+			<time class="text-sm text-muted-foreground">{formattedDate}</time>
+			<h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]">
+				{post.data.title}
+			</h1>
+			<p class="text-lg sm:text-xl font-light text-muted-foreground leading-relaxed">
+				{post.data.description}
+			</p>
+
+			{post.data.cover && (
+				<img
+					src={post.data.cover.src}
+					alt={post.data.title}
+					class="w-full rounded-lg border border-border/40"
+				/>
+			)}
+		</header>
+
+		{/* Post Content */}
+		<article class="container mx-auto max-w-3xl">
+			<div class="prose-blog">
+				<Content />
+			</div>
+		</article>
+
+		{/* Tags */}
+		{post.data.tags.length > 0 && (
+			<footer class="container mx-auto max-w-3xl mt-16 pt-8 border-t border-border/40">
+				<div class="flex flex-wrap gap-2">
+					{post.data.tags.map((tag: string) => (
+						<span class="px-3 py-1 rounded-full bg-secondary/60 text-sm font-light text-muted-foreground border border-border/40">
+							{tag}
+						</span>
+					))}
+				</div>
+			</footer>
+		)}
+	</main>
+</BaseLayout>
