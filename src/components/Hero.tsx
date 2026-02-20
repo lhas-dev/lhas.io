@@ -20,12 +20,12 @@ export function Hero() {
 
   // Animation timing: Header ends at 0.5s, then 0.3s delay, Hero starts at 0.8s
   const heroStartDelay = 0.8;
-  const typingStartDelay = 1.4; // Avatar appears at 0.8s, takes 0.6s = 1.4s
+  const typingStartDelay = 4; // Avatar appears at 0.8s, takes 0.6s = 1.4s
 
   return (
     <section className="relative lg:min-h-[100vh] flex items-center justify-center px-4 pt-6 pb-30 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Simple linear gradient from gray to black */}
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-800 to-black -z-10" />
+      {/* Background matching video color */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#060606] to-black -z-10" />
 
       {/* Large developer icon background */}
       <motion.div
@@ -38,12 +38,14 @@ export function Hero() {
       </motion.div>
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-16">
-          {/* Avatar with BJJ Belt easter egg */}
+          {/* Avatar with animated logo and BJJ Belt easter egg */}
           <div className="relative flex flex-col items-center gap-3">
-            <img
-              src="/me.jpg"
-              alt="Luiz Almeida"
-              className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-full object-cover shadow-2xl"
+            <video
+              src="/animated-logo.mp4"
+              autoPlay
+              muted
+              playsInline
+              className="w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-2xl shadow-2xl"
             />
             <BJJBelt />
           </div>
@@ -96,8 +98,9 @@ export function Hero() {
               }}
               className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground leading-relaxed [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]"
             >
-              Specialist Front-end Engineer with 10+ years building scalable web
-              and mobile applications
+              Senior/Specialist Front-end Engineer with{" "}
+              <strong>10+ years</strong> building scalable web and mobile
+              applications
             </motion.p>
 
             {/* Description - fade in after subheading */}

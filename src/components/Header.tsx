@@ -27,7 +27,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-xl bg-gradient-to-b from-neutral-900/90 to-black/90 shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-xl bg-[#060606]/95 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:py-2">
         <div className="flex flex-col md:flex-row py-2 gap-4 items-center md:gap-20">
           <a
