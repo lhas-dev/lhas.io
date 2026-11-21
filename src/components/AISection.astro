@@ -1,0 +1,21 @@
+---
+import { aiPrinciples } from '@/data/site';
+---
+
+<section id="ai" aria-labelledby="ai-title" class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
+	<h2 id="ai-title" class="text-3xl sm:text-4xl font-bold tracking-tight">How I build with AI</h2>
+	<p class="mt-4 max-w-2xl text-lg font-light text-muted-foreground">
+		AI agents help me ship faster, and AI inside the products I build stays tightly scoped. Both follow the same rule:
+		nothing is trusted until it's checked.
+	</p>
+
+	<ol class="mt-10 grid gap-6 sm:grid-cols-2">
+		{aiPrinciples.map((item, i) => (
+			<li class="rounded-xl border border-border/60 bg-secondary/20 p-6">
+				<span class="font-mono text-sm text-muted-foreground/60">{String(i + 1).padStart(2, '0')}</span>
+				<h3 class="mt-2 text-lg font-semibold">{item.title}</h3>
+				<p class="mt-2 font-light leading-relaxed text-muted-foreground">{item.body}</p>
+			</li>
+		))}
+	</ol>
+</section>

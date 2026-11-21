@@ -1,0 +1,30 @@
+---
+import { consultancies } from '@/data/site';
+---
+
+<section aria-labelledby="shipped-with-title" class="border-y border-border/60 bg-white/[0.015]">
+	<div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
+		<h2 id="shipped-with-title" class="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/70 whitespace-nowrap">
+			Shipped with
+		</h2>
+		<ul class="flex flex-wrap items-center justify-center sm:justify-start gap-x-12 gap-y-6">
+			{consultancies.map((c) => (
+				<li>
+					<a
+						href={c.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={`${c.name} (opens in a new tab)`}
+						title={c.name}
+						class="logo-mono flex items-center gap-2.5 h-9"
+					>
+						<img src={c.logo} alt={c.label ? '' : c.name} width={c.width} height="32" class="h-7 w-auto" loading="lazy" decoding="async" />
+						{c.label && (
+							<span class="font-[family-name:var(--font-heading)] text-sm font-bold uppercase tracking-[0.12em] text-white">{c.label}</span>
+						)}
+					</a>
+				</li>
+			))}
+		</ul>
+	</div>
+</section>

@@ -12,7 +12,10 @@ import { experience, earlierExperience } from '@/data/site';
 
 				<div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
 					<h3 class="text-xl sm:text-2xl font-semibold">
-						{job.role} <span class="text-muted-foreground font-normal">at</span> {job.company}
+						{job.role} <span class="text-muted-foreground font-normal">at</span>{" "}
+						{job.url ? (
+							<a href={job.url} target="_blank" rel="noopener noreferrer" class="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground transition-colors">{job.company}</a>
+						) : job.company}
 					</h3>
 					<p class="text-sm text-muted-foreground whitespace-nowrap">{job.period}</p>
 				</div>
@@ -44,7 +47,9 @@ import { experience, earlierExperience } from '@/data/site';
 		<ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-muted-foreground">
 			{earlierExperience.map((e) => (
 				<li>
-					<span class="text-foreground/90">{e.company}</span> · {e.role}
+					{e.url ? (
+						<a href={e.url} target="_blank" rel="noopener noreferrer" class="text-foreground/90 underline decoration-foreground/20 underline-offset-4 hover:decoration-foreground transition-colors">{e.company}</a>
+					) : <span class="text-foreground/90">{e.company}</span>} · {e.role}
 					<span class="text-muted-foreground/70"> ({e.period})</span>
 				</li>
 			))}

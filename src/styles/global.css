@@ -246,3 +246,18 @@
     font-weight: 600;
   }
 }
+
+/* "Shipped with" logos: monochrome to match the theme, original colors on hover/focus. */
+.logo-mono {
+  filter: grayscale(1) brightness(1.15);
+  opacity: 0.55;
+  transition: filter 0.25s ease, opacity 0.25s ease;
+}
+.logo-mono:hover,
+.logo-mono:focus-visible {
+  filter: none;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-mono { transition: none; }
+}

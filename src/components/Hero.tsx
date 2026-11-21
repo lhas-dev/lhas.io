@@ -52,7 +52,15 @@ export function Hero() {
               className="fade-up text-base sm:text-lg font-light text-muted-foreground leading-relaxed"
             >
               {site.headline} Most recently at{" "}
-              <strong className="font-semibold text-foreground">Housecall Pro</strong>.
+              <a
+                href="https://www.housecallpro.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground transition-colors"
+              >
+                Housecall Pro
+              </a>
+              .
             </p>
 
             <div
@@ -87,9 +95,13 @@ export function Hero() {
 
             <div
               {...fade(400)}
-              className="fade-up flex items-center justify-center lg:justify-start gap-3 text-sm text-muted-foreground/70"
+              className="fade-up flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-sm text-muted-foreground/70"
             >
               <span>{site.location}</span>
+              <span aria-hidden="true">·</span>
+              <span>
+                {site.timezone} <span className="text-muted-foreground/50">({site.timezoneNote})</span>
+              </span>
               <BJJBelt />
             </div>
           </div>
