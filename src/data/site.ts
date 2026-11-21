@@ -24,6 +24,8 @@ export interface Experience {
   role: string;
   period: string;
   location: string;
+  /** Slug of a case study in src/data/caseStudies.ts. */
+  caseStudy?: string;
   summary?: string;
   highlights: string[];
   tags: string[];
@@ -45,6 +47,7 @@ export const experience: Experience[] = [
       "Analyzed product usage and onboarding funnel data in Snowflake to inform prioritization and feature iterations.",
     ],
     tags: ["React", "TypeScript", "Ruby on Rails", "Datadog", "Sentry", "Snowflake"],
+    caseStudy: "trial-activation-housecall-pro",
   },
   {
     company: "RoVRstack.ai",

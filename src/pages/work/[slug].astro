@@ -1,0 +1,75 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { caseStudies, type CaseStudy } from '@/data/caseStudies';
+import { site } from '@/data/site';
+
+export function getStaticPaths() {
+	return caseStudies.map((study) => ({ params: { slug: study.slug }, props: { study } }));
+}
+
+interface Props {
+	study: CaseStudy;
+}
+
+const { study } = Astro.props;
+
+const sections = [
+	{ id: 'context', title: 'Context', items: study.context },
+	{ id: 'investigation', title: 'Investigation', items: study.investigation },
+	{ id: 'contribution', title: 'What I did', items: study.contribution },
+	{ id: 'outcome', title: 'Outcome', items: study.outcome },
+];
+
+const articleSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	headline: study.title,
+	description: study.summary,
+	author: { '@type': 'Person', name: site.name, url: site.url },
+};
+---
+
+<BaseLayout title={study.title} description={study.summary} type="article" jsonLd={articleSchema}>
+	<main class="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+		<a href="/#experience" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+			← Back to experience
+		</a>
+
+		<header class="mt-8">
+			<p class="text-sm uppercase tracking-widest text-muted-foreground">Case study · {study.company}</p>
+			<h1 class="mt-3 text-4xl sm:text-5xl font-bold tracking-tight leading-tight">{study.title}</h1>
+			<p class="mt-5 text-lg sm:text-xl font-light text-muted-foreground leading-relaxed">{study.summary}</p>
+			<p class="mt-4 text-sm text-muted-foreground/80">{study.role} · {study.period}</p>
+		</header>
+
+		<dl class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+			{study.metrics.map((m) => (
+				<div class="rounded-lg border border-border/60 bg-secondary/30 p-5">
+					<dt class="sr-only">{m.label}</dt>
+					<dd class="text-3xl font-bold">{m.value}</dd>
+					<dd class="mt-1 text-sm text-muted-foreground">{m.label}</dd>
+				</div>
+			))}
+		</dl>
+
+		{sections.map((s) => (
+			<section id={s.id} aria-labelledby={`${s.id}-title`} class="mt-14">
+				<h2 id={`${s.id}-title`} class="text-2xl font-semibold">{s.title}</h2>
+				<div class="mt-4 space-y-4 text-foreground/85 font-light leading-relaxed text-lg">
+					{s.items.map((p) => <p>{p}</p>)}
+				</div>
+			</section>
+		))}
+
+		<ul class="mt-12 flex flex-wrap gap-2" aria-label="Technologies">
+			{study.tags.map((t) => <li class="text-xs px-2 py-1 rounded bg-secondary/70 text-muted-foreground">{t}</li>)}
+		</ul>
+
+		<div class="mt-16 border-t border-border/60 pt-10 text-center">
+			<p class="text-lg text-muted-foreground">Want to talk about work like this?</p>
+			<a href={`mailto:${site.email}`} class="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-black font-semibold hover:bg-white/90 transition-colors">
+				{site.email}
+			</a>
+		</div>
+	</main>
+</BaseLayout>

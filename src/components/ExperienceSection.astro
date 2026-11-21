@@ -24,6 +24,12 @@ import { experience, earlierExperience } from '@/data/site';
 					{job.highlights.map((h) => <li>{h}</li>)}
 				</ul>
 
+				{job.caseStudy && (
+					<a href={`/work/${job.caseStudy}`} class="mt-4 inline-flex items-center gap-1 text-sm font-medium underline underline-offset-4 hover:text-foreground/80">
+						Read the case study →
+					</a>
+				)}
+
 				<ul class="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
 					{job.tags.map((t) => (
 						<li class="text-xs px-2 py-1 rounded bg-secondary/70 text-muted-foreground">{t}</li>
