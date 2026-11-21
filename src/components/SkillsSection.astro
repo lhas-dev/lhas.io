@@ -1,0 +1,22 @@
+---
+import { skills } from '@/data/site';
+---
+
+<section id="skills" aria-labelledby="skills-title" class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
+	<h2 id="skills-title" class="text-3xl sm:text-4xl font-bold tracking-tight mb-10">Skills</h2>
+
+	<dl class="grid gap-8 sm:grid-cols-2">
+		{skills.map((s) => (
+			<div class="rounded-lg border border-border/60 bg-secondary/20 p-6">
+				<dt class="text-sm uppercase tracking-wider text-muted-foreground mb-3">{s.group}</dt>
+				<dd>
+					<ul class="flex flex-wrap gap-2">
+						{s.items.map((item) => (
+							<li class="px-3 py-1 rounded-md bg-secondary/70 text-sm text-foreground/90">{item}</li>
+						))}
+					</ul>
+				</dd>
+			</div>
+		))}
+	</dl>
+</section>

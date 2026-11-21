@@ -6,17 +6,17 @@ export const projects: Project[] = [
     slug: "cultiva-ai",
     title: "Cultiva.ai",
     shortDescription:
-      "Get personalized growing guidance based on your space, goals, and experience level. Cultiva.ai is your intelligent cultivation companion.",
+      "Rails 8 SaaS that turns a grower's space, goals and budget into an AI-generated, step-by-step cultivation guide.",
     description:
-      "Your personalized cultivation guide. Discover the perfect growing setup with our intelligent guide system. We help you optimize your cultivation based on size, amount, and desired effects. Targeted to medicinal cannabis patients, Cultiva.ai provides tailored advice to ensure you achieve the best results from your grow space.",
+      "A product I designed and built end to end, from landing page to payments.\n\nUsers go through a multi-step wizard (grow space, monthly harvest goal, desired effects and budget). A background job calls an LLM API to generate a personalized guide, and the page updates automatically when it is ready, rendered as a book-like reader with chapters. Guides are unlocked through a Stripe-powered paywall.\n\nBuilt with Ruby on Rails 8 and Hotwire to keep the stack small and ship fast, with PostgreSQL and background jobs underneath. Targeted at medicinal cannabis patients, the product is now evolving into a grow diary focused on fast daily logging.",
     thumbnail: "/projects/cultiva-ai.jpg",
     technologies: [
-      "React",
-      "TypeScript",
-      "Next.js",
-      "TensorFlow",
+      "Ruby on Rails 8",
+      "Hotwire",
+      "PostgreSQL",
       "LLM Integration",
-      "Python",
+      "Stripe",
+      "Background Jobs",
     ],
     links: {
       live: "https://cultiva.ai",

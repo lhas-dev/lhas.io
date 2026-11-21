@@ -18,6 +18,11 @@ const featuredPosts = allPosts
   .filter((p) => p.data.featured)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
+const showFeatured = isFirstPage && featuredPosts.length > 0;
+const featuredIds = new Set(featuredPosts.map((p) => p.id));
+// On page 1 the featured posts are already in the carousel, so don't repeat them in the grid.
+const gridPosts = showFeatured ? page.data.filter((p: any) => !featuredIds.has(p.id)) : page.data;
+
 const featuredForCarousel = featuredPosts.map((p) => ({
   title: p.data.title,
   description: p.data.description,
@@ -26,20 +31,20 @@ const featuredForCarousel = featuredPosts.map((p) => ({
 }));
 ---
 
-<BaseLayout title="Blog" description="Thoughts on front-end development, React, TypeScript, and modern web technologies.">
-	<main class="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+<BaseLayout title="Blog" description="Notes by Luiz Almeida on full-stack development, React, TypeScript, Ruby on Rails and modern web architecture.">
+	<main class="min-h-screen pt-16 pb-16 px-4 sm:px-6 lg:px-8">
 		{/* Page Header */}
 		<section class="container mx-auto max-w-6xl mb-12 text-center">
 			<h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] mb-6 [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]">
 				Blog
 			</h1>
 			<p class="text-lg sm:text-xl md:text-2xl font-light text-muted-foreground leading-relaxed max-w-3xl mx-auto [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]">
-				Thoughts on front-end development, architecture, and modern web technologies
+				Notes on full-stack development, architecture and modern web technologies
 			</p>
 		</section>
 
 		{/* Featured Carousel - only on page 1 */}
-		{isFirstPage && featuredForCarousel.length > 0 && (
+		{showFeatured && (
 			<section class="container mx-auto max-w-6xl mb-12">
 				<FeaturedCarousel posts={featuredForCarousel} client:idle />
 			</section>
@@ -48,7 +53,7 @@ const featuredForCarousel = featuredPosts.map((p) => ({
 		{/* Posts Grid */}
 		<section class="container mx-auto max-w-6xl">
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				{page.data.map((post: any, index: number) => (
+				{gridPosts.map((post: any, index: number) => (
 					<BlogPostCard
 						title={post.data.title}
 						description={post.data.description}

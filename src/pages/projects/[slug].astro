@@ -1,8 +1,5 @@
 ---
-import '../../styles/global.css';
-import 'balloon-css';
-import { Header } from '@/components/Header';
-import { Navigation } from '@/components/Navigation';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 import { projects } from '@/data/projects';
 import type { Project } from '@/types/project';
 
@@ -20,30 +17,19 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{project.title} - Luiz Almeida</title>
-		<meta name="description" content={project.shortDescription} />
-	</head>
-	<body>
-		<Header client:idle />
-
+<BaseLayout title={project.title} description={project.shortDescription} image={project.thumbnail}>
 		{/* Large Background Thumbnail */}
 		<div class="fixed inset-0 -z-10 overflow-hidden">
 			<img
 				src={project.thumbnail}
-				alt={project.title}
+				alt=""
 				class="w-full h-full object-cover opacity-10"
 			/>
 			{/* Black linear gradient overlay */}
 			<div class="absolute inset-0 bg-gradient-to-b from-[#CCC]/20 via-black/40 to-black"></div>
 		</div>
 
-		<main class="relative min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+		<main class="relative min-h-screen pt-16 pb-16 px-4 sm:px-6 lg:px-8">
 			{/* Back Button */}
 			<div class="container mx-auto max-w-6xl mb-8">
 				<a
@@ -135,9 +121,4 @@ const { project } = Astro.props;
 				</div>
 			</section>
 		</main>
-
-		<div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-			<Navigation delay={1} client:idle />
-		</div>
-	</body>
-</html>
+</BaseLayout>

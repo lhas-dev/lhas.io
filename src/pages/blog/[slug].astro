@@ -20,8 +20,8 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
 });
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
-	<main class="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+<BaseLayout title={post.data.title} description={post.data.description} type="article">
+	<main class="min-h-screen pt-16 pb-16 px-4 sm:px-6 lg:px-8">
 		{/* Back Button */}
 		<div class="container mx-auto max-w-3xl mb-8">
 			<a

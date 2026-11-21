@@ -2,26 +2,76 @@
 import '../styles/global.css';
 import 'balloon-css';
 import { Header } from '@/components/Header';
+import { Navigation } from '@/components/Navigation';
+import { site } from '@/data/site';
 
 interface Props {
-  title: string;
+  /** Page title. Rendered as "<title> - Luiz Almeida". Omit on the home page. */
+  title?: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  /** Optional JSON-LD object(s) for this page. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description = "Front-end Engineer with 10+ years building scalable web and mobile applications." } = Astro.props;
+const defaultTitle = `${site.name} - ${site.role} | ${site.stack.join(', ')}`;
+
+const {
+  title,
+  description = site.description,
+  image = site.image,
+  type = 'website',
+  jsonLd,
+} = Astro.props;
+
+const fullTitle = title ? `${title} - ${site.name}` : defaultTitle;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+const imageUrl = new URL(image, Astro.site ?? site.url).href;
+const currentPath = Astro.url.pathname;
+const year = new Date().getFullYear();
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} - Luiz Almeida</title>
+
+		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
+		<meta name="author" content={site.name} />
+		<link rel="canonical" href={canonical} />
+		<meta name="theme-color" content="#070707" />
+
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageUrl} />
+		<meta property="og:image:alt" content={`${site.name} - ${site.role}`} />
+		<meta property="og:site_name" content={site.name} />
+		<meta property="og:locale" content="en_US" />
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
+
+		{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 	</head>
 	<body>
-		<Header client:idle />
-		<slot />
+		<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-3 focus:py-2 focus:rounded-md focus:bg-white focus:text-black">
+			Skip to content
+		</a>
+		<Header currentPath={currentPath} />
+		<div id="main">
+			<slot />
+		</div>
+		<footer class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10 border-t border-border/40 flex flex-col items-center gap-4">
+			<Navigation />
+			<p class="text-sm text-muted-foreground/70">© {year} {site.name} · {site.location}</p>
+		</footer>
 	</body>
 </html>

@@ -1,138 +1,97 @@
 import { BJJBelt } from "@/components/BJJBelt";
-import * as motion from "motion/react-client";
-import { CodeIcon } from "@/components/icons/SocialIcons";
-import { useState, useEffect } from "react";
-import { Badges } from "@/components/Badges";
+import {
+  CodeIcon,
+  DownloadIcon,
+  LinkedinIcon,
+  MailIcon,
+} from "@/components/icons/SocialIcons";
+import { site } from "@/data/site";
 
+// Rendered as static HTML (no client directive): content is visible on first paint.
+// Entrance motion is pure CSS (.fade-up in global.css) and disabled for prefers-reduced-motion.
 export function Hero() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  const text1 = "Crafting ";
-  const text2 = "Digital Experiences";
-
-  // Calculate total duration for typing animation
-  const charDelay = 0.08; // delay between each character
-  const text1Duration = text1.length * charDelay;
-  const totalTypingDuration = (text1.length + text2.length) * charDelay;
-
-  // Animation timing: Header ends at 0.5s, then 0.3s delay, Hero starts at 0.8s
-  const heroStartDelay = 0.8;
-  const typingStartDelay = 4; // Avatar appears at 0.8s, takes 0.6s = 1.4s
+  const fade = (delay: number) => ({ style: { animationDelay: `${delay}ms` } });
 
   return (
-    <section className="relative lg:min-h-[100vh] flex items-center justify-center px-4 pt-6 pb-30 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background matching video color */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#070707] to-[#070707] -z-10" />
+    <section className="relative flex items-center justify-center px-4 pt-8 pb-16 sm:px-6 sm:pt-12 lg:px-8 lg:pt-20 lg:pb-24 overflow-hidden">
+      <div className="absolute inset-0 bg-[#070707] -z-10" />
 
-      {/* Large developer icon background */}
-      <motion.div
-        initial={{ opacity: 0, y: -80 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
+      <div
+        aria-hidden="true"
         className="absolute top-[0%] left-[25%] lg:w-[100%] lg:h-[100%] inset-0 flex items-center justify-center -z-10"
       >
         <CodeIcon className="w-full h-full text-white opacity-[0.03]" />
-      </motion.div>
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row justify-center gap-12 lg:gap-16">
-          {/* Avatar with animated logo and BJJ Belt easter egg */}
-          <div className="relative flex flex-col items-center gap-3">
-            <motion.video
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 1, ease: "easeOut" }}
-              src="/animated-logo.mp4"
-              autoPlay
-              muted
-              playsInline
-              className="w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-2xl shadow-2xl"
-            />
-            <BJJBelt />
-          </div>
+      </div>
 
-          {/* Content */}
-          <div className="text-center lg:text-left space-y-6 lg:space-y-8 max-w-2xl">
-            {/* Main headline - plain text on server, animated on client */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]">
-              <>
-                {text1.split("").map((char, index) => (
-                  <motion.span
-                    key={`text1-${index}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      delay: typingStartDelay + index * charDelay,
-                      duration: 0.1,
-                    }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-                <span className="text-primary/90">
-                  {text2.split("").map((char, index) => (
-                    <motion.span
-                      key={`text2-${index}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{
-                        delay:
-                          typingStartDelay + text1Duration + index * charDelay,
-                        duration: 0.1,
-                      }}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                </span>
-              </>
+      <div className="max-w-5xl mx-auto w-full sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center lg:items-start">
+          <div className="text-center lg:text-left space-y-6 max-w-3xl">
+            <p {...fade(0)} className="fade-up">
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-sm text-emerald-300">
+                <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
+                {site.availability}
+              </span>
+            </p>
+
+            <h1
+              {...fade(80)}
+              className="fade-up text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] [text-shadow:0_4px_12px_rgba(0,0,0,0.4)]"
+            >
+              {site.role}
             </h1>
 
-            {/* Subheading - fade in after typing completes */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: typingStartDelay + totalTypingDuration + 0.2,
-                duration: 0.8,
-                ease: "easeOut",
-              }}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground leading-relaxed [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]"
+            <p
+              {...fade(160)}
+              className="fade-up text-xl sm:text-2xl font-light text-foreground/90 leading-snug"
             >
-              Senior/Specialist Front-end Engineer with{" "}
-              <strong>10+ years</strong> building scalable web and mobile
-              applications
-            </motion.p>
+              {site.stack.join(" · ")}
+            </p>
 
-            {/* Description - fade in after subheading */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: typingStartDelay + totalTypingDuration + 0.8,
-                duration: 0.8,
-                ease: "easeOut",
-              }}
-              className="text-base sm:text-lg md:text-xl font-light text-muted-foreground/80 [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]"
+            <p
+              {...fade(240)}
+              className="fade-up text-base sm:text-lg font-light text-muted-foreground leading-relaxed"
             >
-              LATAM 🇧🇷 • Fast-paced developer, who enjoys crafting exceptional
-              digital experiences worldwide •{" "}
-            </motion.p>
+              {site.headline} Most recently at{" "}
+              <strong className="font-semibold text-foreground">Housecall Pro</strong>.
+            </p>
 
-            <motion.em
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 0.5, y: 0 }}
-              transition={{
-                delay: typingStartDelay + totalTypingDuration + 2,
-                duration: 1,
-                ease: "easeOut",
-              }}
-              className="text-base sm:text-lg md:text-xl font-light text-muted-foreground/80 [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]"
+            <div
+              {...fade(320)}
+              className="fade-up flex flex-wrap justify-center lg:justify-start gap-3 pt-2"
             >
-              React, React Native, Ruby on Rails, TypeScript
-            </motion.em>
+              <a
+                href={site.resume}
+                download="Luiz-Almeida-Resume.pdf"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-black font-semibold hover:bg-white/90 transition-colors"
+              >
+                <DownloadIcon className="w-4 h-4" />
+                Download resume
+              </a>
+              <a
+                href={site.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-secondary hover:bg-secondary/80 border border-border/60 font-medium transition-colors"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+                LinkedIn
+              </a>
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-secondary hover:bg-secondary/80 border border-border/60 font-medium transition-colors"
+              >
+                <MailIcon className="w-4 h-4" />
+                Get in touch
+              </a>
+            </div>
+
+            <div
+              {...fade(400)}
+              className="fade-up flex items-center justify-center lg:justify-start gap-3 text-sm text-muted-foreground/70"
+            >
+              <span>{site.location}</span>
+              <BJJBelt />
+            </div>
           </div>
         </div>
       </div>

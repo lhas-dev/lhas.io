@@ -1,13 +1,6 @@
-import { useState, useEffect } from "react";
+import { site } from "@/data/site";
 
-export function Header() {
-  const [currentPath, setCurrentPath] = useState("");
-
-  useEffect(() => {
-    console.log("ae", window.location.pathname);
-    setCurrentPath(window.location.pathname);
-  }, []);
-
+export function Header({ currentPath = "/" }: { currentPath?: string }) {
   const isActive = (path: string) => {
     if (path === "/") {
       return currentPath === "/";
@@ -34,20 +27,18 @@ export function Header() {
             href="/"
             className="text-3xl lg:ml-40 font-bold hover:text-primary/80 transition-colors flex flex-col md:flex-row items-center justify-center md:items-end gap-1"
           >
-            Luiz Almeida{" "}
-            <span className="font-light text-lg lg:text-lg">
-              Front-end Engineer
-            </span>
+            {site.name}{" "}
+            <span className="font-light text-lg lg:text-lg">{site.role}</span>
           </a>
 
           <nav className="flex items-center gap-4 mb-2 md:mb-0 sm:gap-6">
-            <a href="/" className={getLinkClassName("/")}>
+            <a href="/" className={getLinkClassName("/")} aria-current={isActive("/") ? "page" : undefined}>
               Home
             </a>
-            <a href="/projects" className={getLinkClassName("/projects")}>
+            <a href="/projects" className={getLinkClassName("/projects")} aria-current={isActive("/projects") ? "page" : undefined}>
               Projects
             </a>
-            <a href="/blog" className={getLinkClassName("/blog")}>
+            <a href="/blog" className={getLinkClassName("/blog")} aria-current={isActive("/blog") ? "page" : undefined}>
               Blog
             </a>
           </nav>
