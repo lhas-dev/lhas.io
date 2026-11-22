@@ -1,48 +1,47 @@
 import { site } from "@/data/site";
 
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+];
+
 export function Header({ currentPath = "/" }: { currentPath?: string }) {
-  const isActive = (path: string) => {
-    if (path === "/") {
-      return currentPath === "/";
-    }
-    return currentPath.startsWith(path);
-  };
-
-  const getLinkClassName = (path: string) => {
-    const baseClasses =
-      "text-sm sm:text-base px-2 py-1 rounded-md transition-all flex items-center";
-
-    if (isActive(path)) {
-      return `${baseClasses} bg-white text-black`;
-    }
-
-    return `${baseClasses} text-muted-foreground hover:bg-white hover:text-black`;
-  };
+  const isActive = (path: string) =>
+    path === "/" ? currentPath === "/" : currentPath.startsWith(path);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-xl bg-[#060606]/95 shadow-sm">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:py-2">
-        <div className="flex flex-col md:flex-row py-2 gap-4 items-center md:gap-20">
-          <a
-            href="/"
-            className="text-3xl lg:ml-40 font-bold hover:text-primary/80 transition-colors flex flex-col md:flex-row items-center justify-center md:items-end gap-1"
-          >
-            {site.name}{" "}
-            <span className="font-light text-lg lg:text-lg">{site.role}</span>
-          </a>
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-[#060606]/90 backdrop-blur-xl">
+      {/* Same container as the page sections, so the header lines up with the content. */}
+      <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
+        <a href="/" className="group flex items-baseline gap-3 min-w-0" aria-label={`${site.name}, home`}>
+          <span className="text-lg sm:text-xl font-bold tracking-tight whitespace-nowrap font-[family-name:var(--font-heading)]">
+            {site.name}
+          </span>
+          <span className="hidden md:inline text-sm text-muted-foreground truncate group-hover:text-foreground/80 transition-colors">
+            {site.role}
+          </span>
+        </a>
 
-          <nav className="flex items-center gap-4 mb-2 md:mb-0 sm:gap-6">
-            <a href="/" className={getLinkClassName("/")} aria-current={isActive("/") ? "page" : undefined}>
-              Home
-            </a>
-            <a href="/projects" className={getLinkClassName("/projects")} aria-current={isActive("/projects") ? "page" : undefined}>
-              Projects
-            </a>
-            <a href="/blog" className={getLinkClassName("/blog")} aria-current={isActive("/blog") ? "page" : undefined}>
-              Blog
-            </a>
-          </nav>
-        </div>
+        <nav aria-label="Main" className="flex items-center gap-1 sm:gap-2 -mr-3">
+          {links.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`relative px-3 py-2 text-sm rounded-md transition-colors ${
+                  active
+                    ? "text-foreground after:absolute after:left-3 after:right-3 after:-bottom-[13px] after:h-px after:bg-gradient-to-r after:from-cyan-400 after:to-violet-400"
+                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </nav>
       </div>
     </header>
   );

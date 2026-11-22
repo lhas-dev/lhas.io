@@ -11,8 +11,8 @@ export function ProjectCard({ project, headingLevel = 'h2' }: Props) {
 
   return (
     <a href={`/projects/${project.slug}`} className="group block fade-up">
-      <article className="h-full overflow-hidden rounded-lg bg-secondary/20 hover:bg-secondary/40 transition-all duration-300 border border-border/60 hover:border-border">
-        <div className="relative h-56 overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900">
+      <article className="psy-card h-full rounded-lg bg-secondary/20 hover:bg-secondary/40 transition-all duration-300 border border-border/60 hover:border-border">
+        <div className="relative h-56 overflow-hidden rounded-t-lg bg-gradient-to-br from-neutral-800 to-neutral-900">
           <img
             src={project.thumbnail}
             alt={`${project.title} screenshot`}
@@ -34,7 +34,7 @@ export function ProjectCard({ project, headingLevel = 'h2' }: Props) {
               {project.technologies.slice(0, 5).map((tech) => (
                 <li
                   key={tech}
-                  className="text-xs px-2 py-1 rounded bg-secondary/70 text-muted-foreground"
+                  className="psy-chip text-xs px-2 py-1 rounded bg-secondary/70 text-muted-foreground"
                 >
                   {tech}
                 </li>

@@ -2,7 +2,7 @@ export function BJJBelt() {
   return (
     <div
       className="relative z-20 cursor-pointer hover:scale-110 transition-transform duration-200"
-      aria-label="I love martial arts and I'm a Brazilian Jiu-jitsu Purple Belt!"
+      aria-label="I love martial arts and I'm a Brazilian Jiu-jitsu Purple Belt, 3 stripes!"
       data-balloon-pos="up"
       data-balloon-length="large"
     >
@@ -39,6 +39,12 @@ export function BJJBelt() {
               {/* Stripe outline */}
               <rect x="48" y="7" width="1" height="10" fill="#000000" />
               <rect x="51" y="7" width="1" height="10" fill="#000000" />
+
+              {/* Third white stripe */}
+              <rect x="44" y="7" width="2" height="10" fill="#FFFFFF" />
+              {/* Stripe outline */}
+              <rect x="43" y="7" width="1" height="10" fill="#000000" />
+              <rect x="46" y="7" width="1" height="10" fill="#000000" />
 
               {/* Knot on left side */}
               <rect x="2" y="8" width="4" height="8" fill="#8B5CF6" />
