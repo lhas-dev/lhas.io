@@ -24,7 +24,7 @@ export const caseStudies: CaseStudy[] = [
       "Owning the first surfaces every new Housecall Pro account sees, and reshaping onboarding around what new businesses actually do in their first days.",
     company: "Housecall Pro",
     role: "Senior Software Engineer · PLG Discovery",
-    period: "Jul 2025 – Nov 2026",
+    period: "2025 – 2026",
     metrics: [
       { value: "36%", label: "lift in trial activation" },
       { value: "200K+", label: "home-service pros on the platform" },

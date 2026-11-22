@@ -393,3 +393,39 @@
   .psy-btn:hover, .psy-btn:focus-visible { transform: none; }
   .psy-card::before, .psy-ring::before { animation: none; }
 }
+
+/* Experience: big odometer-style year next to the timeline.
+   The left part (over the content) fades out, so only its right side reads clearly. */
+.timeline-year {
+  display: flex;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.25) 30%, #000 65%);
+  mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.25) 30%, #000 65%);
+}
+/* On wide screens it floats halfway into the right margin, staying close to the content. */
+@media (min-width: 1024px) {
+  .timeline-year-wrap {
+    right: calc(-0.5 * ((100vw - min(100vw, 64rem)) / 2 + 2rem));
+  }
+}
+html, body { overflow-x: clip; }
+.timeline-year .odo-col {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+}
+.timeline-year .odo-strip {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.timeline-year .odo-strip > span {
+  display: block;
+  height: 1em;
+  background: linear-gradient(180deg, #22d3ee, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  .timeline-year .odo-strip { transition: none; }
+}

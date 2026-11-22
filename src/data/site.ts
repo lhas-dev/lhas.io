@@ -43,7 +43,7 @@ export const experience: Experience[] = [
     company: "Housecall Pro",
     url: "https://www.housecallpro.com",
     role: "Senior Software Engineer",
-    period: "Jul 2025 – Nov 2026",
+    period: "2025 – 2026",
     location: "Remote · Colorado, US",
     summary:
       "Product-led growth (PLG Discovery) team on a SaaS platform used by 200K+ home-service pros.",
@@ -68,7 +68,7 @@ export const experience: Experience[] = [
     company: "RoVRstack.ai",
     url: "https://rovrstack.ai",
     role: "Senior Software Engineer",
-    period: "Dec 2024 – Sep 2025",
+    period: "2024 – 2025",
     location: "Remote · New York, US",
     highlights: [
       "Led front-end architecture for an AI platform in Next.js and TypeScript, improving overall performance by 40%.",
@@ -89,7 +89,7 @@ export const experience: Experience[] = [
     company: "JoVE",
     url: "https://www.jove.com",
     role: "Senior Software Engineer",
-    period: "Nov 2023 – Dec 2024",
+    period: "2023 – 2024",
     location: "Remote · Cambridge, US",
     highlights: [
       "Built and maintained web applications on Next.js, Strapi and WordPress serving 2M+ monthly users.",
@@ -103,7 +103,7 @@ export const experience: Experience[] = [
     company: "Lojas Renner",
     url: "https://www.lojasrenner.com.br",
     role: "Front-end Engineer",
-    period: "Feb 2022 – Oct 2023",
+    period: "2022 – 2023",
     location: "Remote · São Paulo, BR",
     highlights: [
       "Refactored legacy web and mobile apps for Brazil's largest fashion retailer, raising Lighthouse performance scores by 50+ points.",
@@ -116,7 +116,7 @@ export const experience: Experience[] = [
     company: "mLabs",
     url: "https://www.mlabs.com.br",
     role: "Front-end Engineer",
-    period: "Jan 2021 – Apr 2022",
+    period: "2021 – 2022",
     location: "Remote · São Paulo, BR",
     highlights: [
       "Delivered React and Redux UI for a social media management SaaS with 100k+ daily active users.",
@@ -129,7 +129,7 @@ export const experience: Experience[] = [
     company: "Hortifruti",
     url: "https://www.hortifruti.com.br",
     role: "Front-end Engineer",
-    period: "Jul 2021 – Feb 2022",
+    period: "2021 – 2022",
     location: "Remote · São Paulo, BR",
     highlights: [
       "Rebuilt the checkout flow with React and Vue, reducing cart abandonment by 20%.",
